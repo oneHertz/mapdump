@@ -359,10 +359,7 @@ const RouteHeader = (props) => {
                 >
                   <a
                     href={
-                      "https://www.openstreetmap.org/?mlat=" +
-                      mapCenterCoords()[0] +
-                      "&mlon=" +
-                      mapCenterCoords()[1]
+                      `https://map.routechoices.com/?latlon=${mapCenterCoords()[0]},${mapCenterCoords()[1]}`
                     }
                     className="btn btn-sm btn-info text-nowrap"
                     target="_blank"
