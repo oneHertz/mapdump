@@ -352,7 +352,7 @@ const RouteViewing = (props) => {
     e.preventDefault()
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    await fetch(
+    const newId = await fetch(
       import.meta.env.VITE_API_URL + "/v1/route/" + props.id + "/comment",
       {
         method: "POST",
@@ -363,8 +363,25 @@ const RouteViewing = (props) => {
         },
         body: JSON.stringify({message: formProps.message})
       }
+    ).then((r) => r.json()).then((r) => r.id);
+    setComments((c) => [{message: formProps.message, user: {username}, id: newId}, ...c]);
+    e.target.reset();
+  }
+
+  const onDeleteComment = async (e, id) => {
+    e.preventDefault()
+    await fetch(
+      import.meta.env.VITE_API_URL + "/v1/route/" + props.id + "/comment/" + id,
+      {
+        method: "DELETE",
+        credentials: "omit",
+        headers: {
+          Authorization: "Token " + api_token,
+          "Content-Type": "application/json",
+        },
+      }
     );
-    setComments((c) => [{message: formProps.message, user: {username}}, ...c]);
+    setComments((c) => c.filter((cc) => cc.id !== id));
     e.target.reset();
   }
 
@@ -605,6 +622,7 @@ const RouteViewing = (props) => {
             username={username}
             canComment={canComment}
             onComment={onSubmitComment}
+            deleteComment={onDeleteComment}
             onClose={() => setCommentsOpen(false)}
           />
         )}

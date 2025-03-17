@@ -508,12 +508,23 @@ def give_like_view(request, uid):
 def give_comment_view(request, uid):
     route = get_object_or_404(Route.objects.exclude(athlete=request.user), uid=uid)
     message = request.data.get("message")
-    Comment.objects.create(
+    c = Comment.objects.create(
         route_id=route.id,
         user_id=request.user.id,
         message=message,
     )
-    return Response({"created": True})
+    return Response({"created": True, "id": c.id})
+
+
+@api_view(["DELETE"])
+@login_required
+def edit_comment_view(request, route_uid, comment_id):
+    comment = get_object_or_404(
+        Comment.objects.filter(user=request.user, route__uid=route_uid),
+        id=comment_id
+    )
+    comment.delete()
+    return Response({"deleted": True})
 
 
 @api_view(["GET", "POST"])

@@ -61,6 +61,11 @@ urlpatterns = [
         views.give_comment_view,
         name="give_comment_view",
     ),
+    re_path(
+        r"^route/(?P<route_uid>[a-zA-Z0-9_-]+)/comment/(?P<uid>[a-zA-Z0-9_-]+)/?$",
+        views.edit_comment_view,
+        name="edit_comment_view",
+    ),
     path("auth/user/", view=views.UserEditView.as_view(), name="auth_user_detail"),
     path(
         "auth/user/settings/",

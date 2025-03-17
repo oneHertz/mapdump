@@ -38,6 +38,11 @@ const CommentsModal = (props) => {
         : comment.user.username)}</span>
                 <p>
                   <LinkItUrl>{comment.message}</LinkItUrl></p>
+                  { comment.user.username === props.username && <>
+                    <br/>
+                    <a href="#" onClick={(e) => props.deleteComment(e, comment.id)}><small>[delete]</small></a>
+                  </>
+                  }
                 <hr/>
               </div>
             ))}

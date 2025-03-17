@@ -136,6 +136,7 @@ class RouteCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = (
+            "id",
             "creation_date",
             "message",
             "user",
