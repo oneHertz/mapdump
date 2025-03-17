@@ -350,6 +350,7 @@ const RouteViewing = (props) => {
 
   const dislike = async (e) => {
     e.preventDefault();
+    if (!likes.find((ll) => ll.user.username === username)) {return}
     setLikes((l) => l.filter((ll) => ll.user.username !== username));
     await fetch(
         import.meta.env.VITE_API_URL + "/v1/route/" + props.id + "/like",
