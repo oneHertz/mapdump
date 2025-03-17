@@ -36,13 +36,12 @@ const CommentsModal = (props) => {
         " " +
         capitalizeFirstLetter(comment.user.last_name)
         : comment.user.username)}</span>
-                <p>
-                  <LinkItUrl>{comment.message}</LinkItUrl></p>
-                  { comment.user.username === props.username && <>
-                    <br/>
-                    <a href="#" onClick={(e) => props.deleteComment(e, comment.id)}><small>[delete]</small></a>
-                  </>
-                  }
+                <p className="mb-0">
+                  <LinkItUrl>{comment.message}</LinkItUrl>
+                </p>
+                { comment.user.username === props.username && <div className="text-right">
+                  <a href="#"  onClick={(e) => props.deleteComment(e, comment.id)}><small>[delete]</small></a>
+                </div>}
                 <hr/>
               </div>
             ))}
