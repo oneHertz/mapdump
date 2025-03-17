@@ -522,7 +522,7 @@ def edit_comment_view(request, route_uid, comment_id):
     comment = get_object_or_404(
         Comment,
         id=comment_id,
-        user=request.user,
+        user_id=request.user.id,
         route__uid=route_uid
     )
     comment.delete()

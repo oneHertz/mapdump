@@ -348,6 +348,22 @@ const RouteViewing = (props) => {
     );
   }
 
+  const dislike = async (e) => {
+    e.preventDefault();
+    setLikes((l) => l.filter((ll) => ll.user.username !== username));
+    await fetch(
+        import.meta.env.VITE_API_URL + "/v1/route/" + props.id + "/like",
+        {
+          method: "POST",
+          credentials: "omit",
+          headers: {
+            Authorization: "Token " + api_token,
+            "Content-Type": "application/json",
+          },
+        }
+    );
+  }
+
   const onSubmitComment = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target);
@@ -461,7 +477,7 @@ const RouteViewing = (props) => {
           onPrivacyChanged={setIsPrivate}
         />
         <div className="mb-3">
-        {likes.length !== 0 && (<><span data-tip data-for="likers"><button type="button" className="font-weight-bold font-italic btn-dark btn">{likes.length} <i className="fa fa-hands-clapping" /></button></span><ReactTooltip place="right" id="likers"><div style={{whiteSpace: "pre"}}>{likers}</div></ReactTooltip></>)}
+        {likes.length !== 0 && (<><span data-tip data-for="likers"><button type="button" className="font-weight-bold font-italic btn-dark btn" onClick={dislike}>{likes.length} <i className="fa fa-hands-clapping" /></button></span><ReactTooltip place="right" id="likers"><div style={{whiteSpace: "pre"}}>{likers}</div></ReactTooltip></>)}
         {canLike && (<> <button type="button" className="btn btn-primary" onClick={grantMedal}>Give a clap <i className="fa fa-hands-clapping" /></button></>)}
         <> <button type="button" className="btn btn-primary font-weight-bold font-italic" onClick={openComments}>{comments.length} <i className="fa fa-comment"></i></button></>
         </div>
