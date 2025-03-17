@@ -62,7 +62,7 @@ urlpatterns = [
         name="give_comment_view",
     ),
     re_path(
-        r"^route/(?P<route_uid>[a-zA-Z0-9_-]+)/comment/(?P<uid>[a-zA-Z0-9_-]+)/?$",
+        r"^route/(?P<route_uid>[a-zA-Z0-9_-]+)/comment/(?P<comment_id>[1-9]\d*)/?$",
         views.edit_comment_view,
         name="edit_comment_view",
     ),

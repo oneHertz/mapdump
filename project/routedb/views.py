@@ -520,8 +520,10 @@ def give_comment_view(request, uid):
 @login_required
 def edit_comment_view(request, route_uid, comment_id):
     comment = get_object_or_404(
-        Comment.objects.filter(user=request.user, route__uid=route_uid),
-        id=comment_id
+        Comment,
+        id=comment_id,
+        user=request.user,
+        route__uid=route_uid
     )
     comment.delete()
     return Response({"deleted": True})
