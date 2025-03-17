@@ -463,7 +463,7 @@ const RouteViewing = (props) => {
         <div className="mb-3">
         {likes.length !== 0 && (<><span data-tip data-for="likers"><button type="button" className="font-weight-bold font-italic btn-dark btn">{likes.length} <i className="fa fa-hands-clapping" /></button></span><ReactTooltip place="right" id="likers"><div style={{whiteSpace: "pre"}}>{likers}</div></ReactTooltip></>)}
         {canLike && (<> <button type="button" className="btn btn-primary" onClick={grantMedal}>Give a clap <i className="fa fa-hands-clapping" /></button></>)}
-        <> <button type="button" className="btn btn-primary" onClick={openComments}><i className="fa fa-comment"></i> Comments ({comments.length})</button></>
+        <> <button type="button" className="btn btn-primary" onClick={openComments}><i className="fa fa-comment"></i> {comments.length} Comments</button></>
         </div>
         {!cropping && (
           <>
