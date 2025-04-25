@@ -515,6 +515,9 @@ class Route(models.Model):
         ordering = ["-start_time"]
         verbose_name = "route"
         verbose_name_plural = "routes"
+        indexes = [
+            models.Index(fields=['-start_time']),
+        ]
 
 
 register_tagged_model(Route)
