@@ -18,12 +18,14 @@ const hashtagRegex = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/;
 const RouteHeader = (props) => {
   const [name, setName] = useState();
   const [comment, setComment] = useState();
+  const [stravaId, setStravaId] = useState();
   const [nameEditing, setNameEditing] = useState(false);
   const [commentEditing, setCommentEditing] = useState(false);
   const [isPrivate, setIsPrivate] = useState(false);
   const [saving, setSaving] = useState(false);
   const inputRef = React.useRef(null);
   const commentInputRef = React.useRef(null);
+  const [stravaToken, setStravaToken] = React.useState();
   const globalState = useGlobalState();
   const { username, api_token } = globalState.user;
 
@@ -33,7 +35,35 @@ const RouteHeader = (props) => {
 
   useEffect(() => {
     setComment(props.comment);
+
+    const stravaLink = props.comment.match(/https\:\/\/www\.strava\.com\/activities\/(\d+)/);
+    setStravaId(stravaLink[1])
   }, [props.comment]);
+
+  useEffect(() => {
+    if (canEdit() && stravaId && api_token) {
+        (async () => {
+          const res = await fetch(
+            import.meta.env.VITE_API_URL + "/v1/strava/token",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + api_token,
+              },
+            }
+          );
+          if (res.status === 401) {
+            setStravaToken(null);
+            globalState.setUser({});
+          }
+          try {
+            const data = await res.json();
+            setStravaToken(data.strava_access_token);
+          } catch {}
+        })();
+    }
+  }, [stravaId, api_token]);
 
   useEffect(() => {
     setIsPrivate(props.isPrivate);
@@ -196,6 +226,33 @@ const RouteHeader = (props) => {
       confirmButtonText: "Delete",
     });
     if (isConfirmed) {
+
+      if (stravaId && stravaToken) {
+        const activityData = await fetch(
+          `https://www.strava.com/api/v3/activities/${stravaId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + stravaToken,
+            },
+          }
+        ).then(r => r.json());
+        let comment = activityData.description.replaceAll(`https://mapdu.mp/r/${props.id}`, '');
+        try {
+          await fetch(`https://www.strava.com/api/v3/activities/${stravaId}`,
+            {
+              method: "PUT",
+              body: JSON.stringify({
+                description: comment,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + stravaToken,
+              },
+            }
+          );
+        } catch {}
+      }
       await fetch(import.meta.env.VITE_API_URL + "/v1/route/" + props.id, {
         method: "DELETE",
         credentials: "omit",
@@ -204,7 +261,6 @@ const RouteHeader = (props) => {
           "Content-Type": "application/json",
         },
       });
-      // remove strava link
       props.history.push("/");
     }
   };
