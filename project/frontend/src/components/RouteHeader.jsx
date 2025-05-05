@@ -37,7 +37,9 @@ const RouteHeader = (props) => {
     setComment(props.comment);
 
     const stravaLink = props.comment.match(/https\:\/\/www\.strava\.com\/activities\/(\d+)/);
-    setStravaId(stravaLink[1])
+    if(stravaLink) {
+      setStravaId(stravaLink[1])
+    }
   }, [props.comment]);
 
   useEffect(() => {
