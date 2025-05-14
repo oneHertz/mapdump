@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as L from "leaflet";
 import CalibrationPreview from "./CalibrationPreview";
 import "../utils/Leaflet.ImageTransform";
@@ -298,11 +298,15 @@ const CalibrationTool = (props) => {
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
   const [threePointsWarning, set3pointsWarning] = useState(false);
-
+  const mapWDiv = useRef(null);
+  const mapRDiv = useRef(null);
+  const [leafletWMap, setLeafletWMap] = useState(null);
+  const [leafletRMap, setLeafletRMap] = useState(null);
   function getCornerCoordinates() {
     const rasterXY = [];
     const worldXY = [];
     const proj = new SpheroidProjection();
+    
     let cornersLatlng = [];
     if (markersRaster.length === 4 && markersWorld.length === 4) {
       for (let i = 0; i < 4; i++) {
@@ -416,7 +420,11 @@ const CalibrationTool = (props) => {
   }, [mapWorld, markersWorld]);
 
   useEffect(() => {
+    if (!(mapWDiv && mapRDiv)) {
+      return
+    }
     resetOrientation(mapDataURL, function (imgDataURI, width, height) {
+      if (L.DomUtil.get('mapRaster')._leaflet_id) {return}
       setImgDataURI(imgDataURI);
       setImgWidth(width);
       setImgHeight(height);
@@ -427,6 +435,7 @@ const CalibrationTool = (props) => {
         zoomSnap: 0,
         scrollWheelZoom: true,
       });
+      setLeafletRMap(tmpMapRaster)
       const boundsRaster = [
         tmpMapRaster.unproject([0, 0]),
         tmpMapRaster.unproject([width, height]),
@@ -437,10 +446,12 @@ const CalibrationTool = (props) => {
     });
     // display world map;
     const routeData = route || [];
+    if (L.DomUtil.get('mapWorld')._leaflet_id) return;
     const tmpMapWorld = L.map("mapWorld", {
       zoomSnap: 0,
       scrollWheelZoom: true,
     });
+    setLeafletWMap(tmpMapWorld)
     const latlngs = routeData.map((pt) => pt.latlng.slice(0, 2));
     const polyline = L.polyline(latlngs, { color: "red" }).addTo(tmpMapWorld);
     if (routeData.length > 1) {
@@ -462,7 +473,7 @@ const CalibrationTool = (props) => {
     }
     setMapWorld(tmpMapWorld);
     // eslint-disable-next-line
-  }, []);
+  }, [mapWDiv, mapRDiv]);
 
   return (
     <>
@@ -479,7 +490,7 @@ const CalibrationTool = (props) => {
         </div>
         <div className="row">
           <div className="col-md-6">
-            <div id="mapRaster" className="leaflet_map calibration_map"></div>
+            <div id="mapRaster" ref={mapRDiv} className="leaflet_map calibration_map"></div>
             <button
               type="button"
               className="btn btn-danger mb-3"
@@ -494,7 +505,7 @@ const CalibrationTool = (props) => {
             </button>
           </div>
           <div className="col-md-6">
-            <div id="mapWorld" className="leaflet_map calibration_map"></div>
+            <div id="mapWorld" ref={mapWDiv} className="leaflet_map calibration_map"></div>
             <button
               type="button"
               className="btn btn-danger mb-3"

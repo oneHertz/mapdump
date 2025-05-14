@@ -19,8 +19,10 @@ import {
 import { parseTCXString } from "../utils/tcxParser";
 import { LatLng, bytesToBase64 } from "../utils";
 
-const pdfjsWorker = import('pdfjs-dist/build/pdf.worker.entry')
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/legacy/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
 
 function NewMap({history}) {
   const globalState = useGlobalState();

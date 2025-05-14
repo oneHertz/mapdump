@@ -231,6 +231,7 @@ const CalibrationPreview = (props) => {
       mapPreview.remove();
       document.getElementById("mapPreview").innerHTML = "";
     }
+    if (L.DomUtil.get('mapPreview')._leaflet_id) return;
     const tmpMapPreview = L.map("mapPreview", {
       zoomSnap: 0,
       scrollWheelZoom: true,
