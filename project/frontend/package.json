@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "node copy-pdfjs-worker.js && vite build"
   },
   "browserslist": {
     "production": [
