@@ -306,7 +306,7 @@ const CalibrationTool = (props) => {
     const rasterXY = [];
     const worldXY = [];
     const proj = new SpheroidProjection();
-    
+
     let cornersLatlng = [];
     if (markersRaster.length === 4 && markersWorld.length === 4) {
       for (let i = 0; i < 4; i++) {

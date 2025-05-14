@@ -516,7 +516,7 @@ class Route(models.Model):
         verbose_name = "route"
         verbose_name_plural = "routes"
         indexes = [
-            models.Index(fields=['-start_time']),
+            models.Index(fields=["-start_time"]),
         ]
 
 

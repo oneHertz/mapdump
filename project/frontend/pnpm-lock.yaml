@@ -1752,7 +1752,7 @@ packages:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
   react-avatar-uploader@https://codeload.github.com/rphlo/react-avatar-uploader/tar.gz/19c7603593186d21a10f114bd5a3d1dc39dc079e:
-    resolution: {tarball: https://codeload.github.com/rphlo/react-avatar-uploader/tar.gz/19c7603593186d21a10f114bd5a3d1dc39dc079e}
+    resolution: {tarball: "https://codeload.github.com/rphlo/react-avatar-uploader/tar.gz/19c7603593186d21a10f114bd5a3d1dc39dc079e"}
     version: 1.0.4
     peerDependencies:
       prop-types: ^15.6.2
@@ -1761,7 +1761,7 @@ packages:
       styled-components: ^3.3.3
 
   react-calendar-heatmap@https://codeload.github.com/rphlo/react-calendar-heatmap/tar.gz/99e417ae6e36f8b5d6f2de62a0c20277e569a9b1:
-    resolution: {tarball: https://codeload.github.com/rphlo/react-calendar-heatmap/tar.gz/99e417ae6e36f8b5d6f2de62a0c20277e569a9b1}
+    resolution: {tarball: "https://codeload.github.com/rphlo/react-calendar-heatmap/tar.gz/99e417ae6e36f8b5d6f2de62a0c20277e569a9b1"}
     version: 1.9.1
     peerDependencies:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0

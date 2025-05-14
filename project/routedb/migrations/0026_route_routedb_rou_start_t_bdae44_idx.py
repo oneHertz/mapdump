@@ -6,12 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routedb', '0025_alter_thumbup_options_and_more'),
+        ("routedb", "0025_alter_thumbup_options_and_more"),
     ]
 
     operations = [
         migrations.AddIndex(
-            model_name='route',
-            index=models.Index(fields=['-start_time'], name='routedb_rou_start_t_bdae44_idx'),
+            model_name="route",
+            index=models.Index(
+                fields=["-start_time"], name="routedb_rou_start_t_bdae44_idx"
+            ),
         ),
     ]
