@@ -4,13 +4,10 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorkerRegistration";
 import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
 
 if (window.location.host === "mapdump.com") {
   Sentry.init({
     dsn: "https://faebc23b4f554998b7d05c57f25c0815@o91052.ingest.sentry.io/1435575",
-    integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 0.1,
   });
 }
 
