@@ -20,7 +20,7 @@ import { parseTCXString } from "../utils/tcxParser";
 import { LatLng, bytesToBase64 } from "../utils";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/legacy/build/pdf.worker.min.js',
+  'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
 ).toString();
 
