@@ -54,8 +54,8 @@ importers:
         specifier: ^2.5.2
         version: 2.5.2
       pdfjs-dist:
-        specifier: ^3.11.174
-        version: 3.11.174
+        specifier: ^4.2.67
+        version: 4.2.67
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1672,8 +1672,16 @@ packages:
     resolution: {integrity: sha512-ad/3bsalbbWhmBo0D6FZ4RNMwsLsPpL6gnvhuSaU5Vm7b06Kr5ubSltQQ0T7YKsiJQO+g22zJ4dJKNTXIyOXtA==}
     engines: {node: '>=8'}
 
+  path2d@0.2.2:
+    resolution: {integrity: sha512-+vnG6S4dYcYxZd+CZxzXCNKdELYZSKfohrk98yajCo1PtRoDgCTrrwOvK1GT0UoAdVszagDVllQc0U1vaX4NUQ==}
+    engines: {node: '>=6'}
+
   pdfjs-dist@3.11.174:
     resolution: {integrity: sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==}
+    engines: {node: '>=18'}
+
+  pdfjs-dist@4.2.67:
+    resolution: {integrity: sha512-rJmuBDFpD7cqC8WIkQUEClyB4UAH05K4AsyewToMTp2gSy3Rrx8c1ydAVqlJlGv3yZSOrhEERQU/4ScQQFlLHA==}
     engines: {node: '>=18'}
 
   performance-now@2.1.0:
@@ -3828,10 +3836,21 @@ snapshots:
   path2d-polyfill@2.0.1:
     optional: true
 
+  path2d@0.2.2:
+    optional: true
+
   pdfjs-dist@3.11.174:
     optionalDependencies:
       canvas: 2.11.2
       path2d-polyfill: 2.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  pdfjs-dist@4.2.67:
+    optionalDependencies:
+      canvas: 2.11.2
+      path2d: 0.2.2
     transitivePeerDependencies:
       - encoding
       - supports-color

@@ -19,7 +19,7 @@
     "jszip": "^3.8.0",
     "leaflet": "^1.9.4",
     "luxon": "^2.5.2",
-    "pdfjs-dist": "^3.11.174",
+    "pdfjs-dist": "^4.2.67",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-avatar-uploader": "https://github.com/rphlo/react-avatar-uploader",
