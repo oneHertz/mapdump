@@ -80,6 +80,7 @@ const Register = (props) => {
                 id="username"
                 name="username"
                 placeholder="Username"
+                autoComplete="username"
                 required
               />
               {errors.username && (
@@ -162,6 +163,7 @@ const Register = (props) => {
                 id="password"
                 name="password"
                 placeholder="Password"
+                autoComplete="new-password"
                 required
               />
               {errors.password1 && (
@@ -183,6 +185,7 @@ const Register = (props) => {
                 id="passwordRepeat"
                 name="passwordRepeat"
                 placeholder="Password Confirmation"
+                autoComplete="new-password"
                 required
               />
               {errors.password2 && (
@@ -196,7 +199,7 @@ const Register = (props) => {
                 id="acceptTos"
                 required
               />
-              <label className="form-check-label" for="acceptTos">
+              <label className="form-check-label" htmlFor="acceptTos">
                 I agree to the terms of service.
               </label>
             </div>

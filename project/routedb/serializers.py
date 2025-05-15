@@ -22,7 +22,7 @@ HASHTAG_REGEX = re.compile(r"(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)")
 
 
 class AuthTokenSerializer(serializers.Serializer):
-    username = serializers.CharField(label=_("Username"), write_only=True)
+    username = serializers.CharField(label=_("Username or Email"), write_only=True)
     password = serializers.CharField(
         label=_("Password"),
         style={"input_type": "password"},
@@ -36,6 +36,11 @@ class AuthTokenSerializer(serializers.Serializer):
         password = attrs.get("password")
 
         if username and password:
+            if "@" in username:
+                try:
+                    username = EmailAddress.objects.select_related("user").get(email__iexact=username).user.username
+                except Exception:
+                    pass
             user = authenticate(
                 request=self.context.get("request"),
                 username=username,
