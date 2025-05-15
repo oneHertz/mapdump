@@ -56,7 +56,7 @@ const LoginPage = (props) => {
         <form onSubmit={onLogin}>
           <div className="form-group">
             <label htmlFor="username">
-              <i className="fas fa-user"></i> Username
+              <i className="fas fa-user"></i> Username or Email
             </label>
             <input
               onChange={(e) => {
