@@ -38,7 +38,11 @@ class AuthTokenSerializer(serializers.Serializer):
         if username and password:
             if "@" in username:
                 try:
-                    username = EmailAddress.objects.select_related("user").get(email__iexact=username).user.username
+                    username = (
+                        EmailAddress.objects.select_related("user")
+                        .get(email__iexact=username)
+                        .user.username
+                    )
                 except Exception:
                     pass
             user = authenticate(
