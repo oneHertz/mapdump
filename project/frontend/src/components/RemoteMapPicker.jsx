@@ -8,7 +8,8 @@ const SERVICES = {
     "livelox": /^https:\/\/www\.livelox\.com\/Viewer\/.+\?([^&]+&)?classId=(\d+)(&.+)?$/,
     "gpsseuranta": /^https:\/\/([^.]+\.)?tulospalvelu.fi\/(gps\/)?[^/]+\/$/,
 }
-function LiveloxPicker(props) {
+
+function RemoteMapPicker(props) {
     const [urlError, setUrlError] = React.useState(null);
     const [submitting, setSubmitting] = React.useState(false);
 
@@ -62,4 +63,4 @@ function LiveloxPicker(props) {
     </div>
 }
 
-export default LiveloxPicker
+export default RemoteMapPicker

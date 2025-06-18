@@ -8,7 +8,7 @@ import GPXDropzone from "./GPXDrop";
 import ImageDropzone from "./ImgDrop";
 import RouteDrawing from "./RouteDrawing";
 import PathDrawing from "./PathDrawing";
-import LiveloxPicker from "./LiveloxPicker";
+import RemoteMapPicker from "./RemoteMapPicker";
 import StravaPicker from "./StravaPicker";
 import CornerCoordsInput from "./CornerCoordsInput";
 import useGlobalState from "../utils/useGlobalState";
@@ -469,7 +469,7 @@ function NewMap({history}) {
               <h1>Map Image File</h1>
               <ImageDropzone onDrop={onDropImg} />
               <hr/>
-              <LiveloxPicker onSuccess={onDropImg}></LiveloxPicker>
+              <RemoteMapPicker onSuccess={onDropImg}></RemoteMapPicker>
               <hr/>
               <button type="button" className="btn btn-danger" onClick={onRestart}>
                 <i className="fas fa-undo"></i> Back
