@@ -49,6 +49,7 @@ function RemoteMapPicker(props) {
             setSubmitting(false);
         })
     }
+
     return <div>
         <form onSubmit={onSubmit}>
             <div className="mb-3">
