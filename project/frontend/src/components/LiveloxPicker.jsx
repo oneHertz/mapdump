@@ -4,18 +4,21 @@ import logo2 from "../gpsseuranta.png";
 
 const INVALID_URL_MSG = "Invalid livelox or gpsseuranta event URL!";
 const ERROR_LOADING_MSG = "Error fetching livelox or gpsseuranta event map!";
-
+const SERVICES = {
+    "livelox": /^https:\/\/www\.livelox\.com\/Viewer\/.+\?([^&]+&)?classId=(\d+)(&.+)?$/,
+    "gpsseuranta": /^https:\/\/([^.]+\.)?tulospalvelu.fi\/(gps\/)?[^/]+\/$/,
+}
 function LiveloxPicker(props) {
     const [urlError, setUrlError] = React.useState(null);
     const [submitting, setSubmitting] = React.useState(false);
 
     const onChangeURL = (e) => {
         const url = e.target.value;
-        const isValid = /^https:\/\/www\.livelox\.com\/Viewer\/.+\?([^&]+&)?classId=(\d+)(&.+)?$/.test(url) || /^https:\/\/([^.]+\.)?tulospalvelu.fi\/(gps\/)?[^/]+\/$/.test(url);
-        if (!isValid) {
-            setUrlError(INVALID_URL_MSG);
-        } else {
+        const matchedService = Object.values(SERVICES).find((serviceRegex) => serviceRegex.test(url));
+        if (matchedService) {
             setUrlError(null);
+        } else {
+            setUrlError(INVALID_URL_MSG);
         }
     }
 
@@ -26,15 +29,19 @@ function LiveloxPicker(props) {
         formData.append('type', 'kmz');
         
         const url = formData.get("url");
-        const serviceName = /^https:\/\/www\.livelox\.com\//.test(url) ? "livelox" : "gpsseuranta";
-
+        const matchedService = Object.entries(SERVICES).find(([serviceName, serviceRegex]) => serviceRegex.test(url));
+        if (!matchedService) {
+            setUrlError(INVALID_URL_MSG);
+            return;
+        }
+        const [serviceName] = matchedService;
         setSubmitting(true);
         fetch(`https://map-download.routechoices.com/api/get-${serviceName}-map`, {
             method: "POST",
             body: formData,
         }).then((r) => r.blob()).then((blob) => {
             const myFile = new File([blob], "map.kmz", {type: "application/kmz"});
-            props.onSubmit([myFile]);
+            props.onSuccess([myFile]);
         }).catch(() => {
             setUrlError(ERROR_LOADING_MSG);
         }).finally(() => {

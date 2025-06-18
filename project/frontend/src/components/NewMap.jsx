@@ -469,7 +469,7 @@ function NewMap({history}) {
               <h1>Map Image File</h1>
               <ImageDropzone onDrop={onDropImg} />
               <hr/>
-              <LiveloxPicker onSubmit={onDropImg}></LiveloxPicker>
+              <LiveloxPicker onSuccess={onDropImg}></LiveloxPicker>
               <hr/>
               <button type="button" className="btn btn-danger" onClick={onRestart}>
                 <i className="fas fa-undo"></i> Back
