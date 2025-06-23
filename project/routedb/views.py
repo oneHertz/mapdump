@@ -136,7 +136,7 @@ class ImpersonateView(generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         username = self.kwargs.get("username")
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(User, username__iexact=username)
         _, token = AuthToken.objects.create(user)
         return redirect(f"/login-as?username={user.username}&token={token}")
 
