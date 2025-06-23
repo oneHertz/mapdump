@@ -28,7 +28,7 @@ function RemoteMapPicker(props) {
         window.onbeforeunload = null;
         const formData = new FormData(e.target);
         formData.append('type', 'kmz');
-        
+
         const url = formData.get("url");
         const matchedService = Object.entries(SERVICES).find(([serviceName, serviceRegex]) => serviceRegex.test(url));
         if (!matchedService) {
