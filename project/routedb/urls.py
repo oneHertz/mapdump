@@ -91,4 +91,9 @@ urlpatterns = [
     path(
         "strava/deauthorize", view=views.strava_deauthorize, name="strava_deauthorize"
     ),
+    path("garmin/token", view=views.garmin_access_token, name="garmin_token"),
+    path("garmin/authorization", view=views.garmin_authorize, name="garmin_authorize"),
+    path(
+        "garmin/deauthorize", view=views.garmin_deauthorize, name="garmin_deauthorize"
+    ),
 ]

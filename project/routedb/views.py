@@ -3,7 +3,7 @@ import os.path
 import re
 import time
 import urllib
-
+import requests
 import arrow
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
@@ -440,6 +440,36 @@ def strava_authorize(request):
 
 @api_view(["GET"])
 @login_required
+def garmin_authorize(request):
+    code = request.GET.get("code")
+    if not code:
+        return HttpResponseRedirect(settings.URL_FRONT + "/new")
+    client = requests.Session()
+    try:
+        r = client.post(
+            "https://connectapi.garmin.com/di-oauth2-service/oauth/token",
+            data={
+                "grant_type": "authorization_code",
+                "client_id": settings.MY_GARMIN_CLIENT_ID,
+                "client_secret": settings.MY_GARMIN_CLIENT_SECRET,
+                "code": code,
+                "code_verifier": "nERF5GavbxbdBzyQY4hVbxCwfrXMsB4y9bgqq6kPthPaadHFstabajejkmDANxQn"
+            },
+        )
+        access_token = r.json()
+        access_token["expires_at"] = time.time() + access_token["expires_in"]
+        access_token["refresh_token_expires_at"] = time.time() + access_token["refresh_token_expires_in"]
+    except Exception:
+        pass
+    else:
+        user_settings = request.user.settings
+        user_settings.garmin_access_token = json.dumps(access_token)
+        user_settings.save()
+    return HttpResponseRedirect(settings.URL_FRONT + "/new")
+
+
+@api_view(["GET"])
+@login_required
 def strava_access_token(request):
     user_settings = request.user.settings
     if user_settings.strava_access_token:
@@ -473,6 +503,52 @@ def strava_access_token(request):
     return Response({})
 
 
+@api_view(["GET"])
+@login_required
+def garmin_access_token(request):
+    user_settings = request.user.settings
+    if user_settings.garmin_access_token:
+        token = json.loads(user_settings.garmin_access_token)
+        if time.time() < token["expires_at"]:
+            return Response(
+                {
+                    "garmin_access_token": token["access_token"],
+                    "expires_at": token["expires_at"],
+                }
+            )
+        if time.time() < token["refresh_token_expires_at"]:
+            try:
+                r = client.post(
+                    "https://connectapi.garmin.com/di-oauth2-service/oauth/token",
+                    data={
+                        "grant_type": "refresh_token",
+                        "client_id": settings.MY_GARMIN_CLIENT_ID,
+                        "client_secret": settings.MY_GARMIN_CLIENT_SECRET,
+                        "refresh_token": token["refresh_token"]
+                    },
+                )
+                access_token = r.json()
+                access_token["expires_at"] = time.time() + access_token["expires_in"]
+                access_token["refresh_token_expires_at"] = time.time() + access_token["refresh_token_expires_in"]
+            except Exception:
+                user_settings.garmin_access_token = ""
+                user_settings.save()
+                return Response({})
+            else:
+                user_settings.garmin_access_token = json.dumps(access_token)
+                user_settings.save()
+                return Response(
+                {
+                    "garmin_access_token": access_token["access_token"],
+                    "expires_at": access_token["expires_at"],
+                }
+        )
+        else:
+            user_settings.garmin_access_token = ""
+            user_settings.save()        
+    return Response({})
+
+
 @api_view(["POST"])
 @login_required
 def strava_deauthorize(request):
@@ -485,6 +561,16 @@ def strava_deauthorize(request):
         except Exception:
             pass
         user_settings.strava_access_token = None
+        user_settings.save()
+    return Response({})
+
+
+@api_view(["POST"])
+@login_required
+def garmin_deauthorize(request):
+    user_settings = request.user.settings
+    if user_settings.garmin_access_token:
+        user_settings.garmin_access_token = None
         user_settings.save()
     return Response({})
 

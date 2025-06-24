@@ -10,6 +10,7 @@ import RouteDrawing from "./RouteDrawing";
 import PathDrawing from "./PathDrawing";
 import RemoteMapPicker from "./RemoteMapPicker";
 import StravaPicker from "./StravaPicker";
+import GarminPicker from "./GarminPicker";
 import CornerCoordsInput from "./CornerCoordsInput";
 import useGlobalState from "../utils/useGlobalState";
 import {
@@ -448,6 +449,8 @@ function NewMap({history}) {
                       onRouteLoaded(route);
                     }}
                   />
+                  <hr/>
+                  <GarminPicker></GarminPicker>
                 </>
               )}
               <hr />
