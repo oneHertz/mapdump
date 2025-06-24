@@ -72,6 +72,7 @@ urlpatterns = [
         views.UserSettingsDetail.as_view(),
         name="user_settings_detail",
     ),
+    path("auth/login", view=views.LoginView.as_view(), name="knox_login"),
     path("auth/", include("dj_rest_auth.urls")),
     path("auth/registration/", include("dj_rest_auth.registration.urls")),
     path("auth/emails/", view=views.EmailsView.as_view(), name="auth_emails"),
@@ -85,7 +86,6 @@ urlpatterns = [
         views.ResendVerificationView.as_view(),
         name="auth_resend_verification",
     ),
-    path("auth/login", view=views.LoginView.as_view(), name="knox_login"),
     path("strava/token", view=views.strava_access_token, name="strava_token"),
     path("strava/authorization", view=views.strava_authorize, name="strava_authorize"),
     path(

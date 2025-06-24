@@ -52,7 +52,7 @@ const Login = () => {
     } else {
       setWantLogin(false);
       const json = await res.json();
-      globalState.setUser({ username: json.username, api_token: json.key });
+      globalState.setUser({ username: json.username, api_token: json.token });
     }
   };
   const onLogout = async () => {
