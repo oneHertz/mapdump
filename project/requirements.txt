@@ -44,6 +44,7 @@ requests-oauthlib==2.0.0
 reverse-geocoder==1.5.1
 s3transfer==0.13.0
 scipy==1.16.0
+sentry-sdk==2.30.0
 six==1.17.0
 soupsieve==2.7
 sqlparse==0.5.3
