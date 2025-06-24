@@ -18,3 +18,4 @@ stravalib
 bs4
 django-tagging @ git+https://github.com/rphlo/django-tagging
 patchy
+dj_database_url
