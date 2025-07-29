@@ -3,6 +3,8 @@ import AvatarUploader from "react-avatar-uploader";
 import Swal from "sweetalert2";
 import useGlobalState from "../utils/useGlobalState";
 
+import defaultAvatar from "../default-avatar.png";
+
 const Avatar = () => {
   const globalState = useGlobalState();
   const { username: _username, api_token } = globalState.user;
@@ -142,7 +144,7 @@ const Avatar = () => {
             <button className="btn btn-danger btn-sm" type="button" onClick={() => {
                 setAvatar("");
                 inputRef.current.currentImage = null;
-                setDefaultImage(`${import.meta.env.VITE_AVATAR_ROOT}/athletes/test.png`)
+                setDefaultImage(defaultAvatar)
             }}><i className="fa-solid fa-trash" /> Clear</button>
             
           </form>
