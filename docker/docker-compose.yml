@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   db:
-    image: postgres:13
+    image: postgres:15.1
     environment:
       POSTGRES_DB: app_db
       POSTGRES_USER: app_user
@@ -15,29 +15,42 @@ services:
       - ../media:/data
     expose:
       - "9000"
+    ports:
+      - "9000:9000"
     environment:
-      MINIO_ACCESS_KEY: minio
-      MINIO_SECRET_KEY: minio123
-    command: server /data
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command:
+      - server
+      - /data
   nginx:
-    image: nginx:latest
+    image: rphlo/nginx:latest
     ports:
       - "8080:8080"
     volumes:
-      - ../:/app/
-      - ../nginx:/etc/nginx/conf.d
-    links:
-      - minio
+      - ../:/app/:ro
+      - ../nginx:/etc/nginx/conf.d:ro
     depends_on:
+      - minio
       - django
     expose:
       - "8080"
+    command: ['nginx', '-g', 'daemon off;']
+    build:
+      context: "."
   smtp:
-    image: mailhog/mailhog:latest
-    ports:
-      - "8025:8025"
+    image: axllent/mailpit:latest
     expose:
       - "1025"
+    ports:
+      - 8025:8025
+    volumes:
+      - ./media:/data
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
   django:
     container_name: md_django
     image: rphlo/mapdump-dev-server:latest

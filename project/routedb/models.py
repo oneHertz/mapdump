@@ -53,7 +53,7 @@ class UserSettings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     strava_access_token = models.TextField(blank=True, null=True)
     avatar = models.ImageField(
-        upload_to=avatar_upload_path, storage=map_storage, null=True
+        upload_to=avatar_upload_path, storage=map_storage, null=True, blank=True
     )
     date_fetched_likes = models.DateTimeField(blank=True, null=True)
     date_fetched_comments = models.DateTimeField(blank=True, null=True)
