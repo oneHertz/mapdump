@@ -86,7 +86,7 @@ class RelativeURLField(serializers.ReadOnlyField):
 
 
 class UserSettingsSerializer(serializers.ModelSerializer):
-    avatar_base64 = serializers.CharField(source="avatar_b64", write_only=True)
+    avatar_base64 = serializers.CharField(source="avatar_b64", write_only=True, blank=True)
 
     def validate_avatar_base64(self, value):
         if not value:

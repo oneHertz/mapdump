@@ -87,14 +87,14 @@ const DownloadOwnDataBtn = () => {
   return (
     <>
       <h3>
-        <i class="fa fa-download"></i> Download own data
+        <i className="fa fa-download"></i> Download own data
       </h3>
       {dl === null ? (
         <button type="button" className="btn btn-primary" onClick={downloadOwnData}>
-          <i class="fa fa-download"></i> Download All Routes
+          <i className="fa fa-download"></i> Download All Routes
         </button>
       ) : (
-        <span class="badge bg-info text-light">
+        <span className="badge bg-info text-light">
           Preparing archive {Math.min(100, Math.round((dl / routeCount) * 100))}
           %
         </span>

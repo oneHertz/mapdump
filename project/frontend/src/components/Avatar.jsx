@@ -10,13 +10,15 @@ const Avatar = () => {
   const [changed, setChanged] = React.useState();
   const [avatar, setAvatar] = React.useState();
   const [errors, setErrors] = React.useState({});
+  const [defaultImage, setDefaultImage] = React.useState(`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${_username}.png`);
+
+  const inputRef = React.useRef(null);
 
   function crop(url, aspectRatio) {
     // we return a Promise that gets resolved with our canvas element
     return new Promise((resolve) => {
       // this image will hold our source image data
       const inputImage = new Image();
-
       // we want to wait for our image to load
       inputImage.onload = () => {
         // let's store the width and height of our image
@@ -125,18 +127,24 @@ const Avatar = () => {
               <AvatarUploader
                 onImageChange={onAvatar}
                 size={150}
-                defaultImg={`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${_username}.png`}
+                defaultImg={defaultImage}
                 currentImage={avatar}
                 fileType={"image/*"}
+                ref={inputRef}
               ></AvatarUploader>
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
-              disabled={!avatar}
+              className="btn btn-primary mr-2"
             >
               <i className="fas fa-save"></i> Save
             </button>
+            <button className="btn btn-danger btn-sm" type="button" onClick={() => {
+                setAvatar("");
+                inputRef.current.currentImage = null;
+                setDefaultImage(`${import.meta.env.VITE_AVATAR_ROOT}/athletes/test.png`)
+            }}><i className="fa-solid fa-trash" /> Clear</button>
+            
           </form>
         </>
       }

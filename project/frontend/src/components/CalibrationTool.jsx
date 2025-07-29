@@ -520,7 +520,7 @@ const CalibrationTool = (props) => {
             </button>
           </div>
         </div>
-        {threePointsWarning && (<div class="alert alert-info" role="alert">
+        {threePointsWarning && (<div className="alert alert-info" role="alert">
           <span>You have set 3 matching reference points, this may be enough and you may continue to the next step, however we recommend to set a 4th reference point if the map image has been captured from a camera.</span>
         </div>)}
         <div className="row">
