@@ -75,6 +75,7 @@ class UserSettings(models.Model):
     def avatar_b64(self, value):
         if not value:
             self.avatar = None
+            return
         content_b64 = value.partition("base64,")[2]
         self.avatar.save(
             "filename",
