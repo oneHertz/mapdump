@@ -38,7 +38,7 @@ jobs:
     - run: ./da migrate
     - run: ./da build_frontend
     - run: ./dc restart django
-    - run: timeout 300 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8080)" != "200" ]]; do sleep 5; done' || false
+    - run: timeout 300 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done' || false
     - run:
         name: Run cypress
         command: |

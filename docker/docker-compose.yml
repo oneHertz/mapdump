@@ -16,9 +16,7 @@ services:
     volumes:
       - ../media:/data
     expose:
-      - "9001"
-    ports:
-      - "9001:9000"
+      - "9000"
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio123
@@ -28,27 +26,24 @@ services:
   nginx:
     container_name: md_nginx
     image: rphlo/nginx:latest
-    ports:
-      - "8080:8080"
     volumes:
       - ../:/app/:ro
       - ../nginx:/etc/nginx/conf.d:ro
-    depends_on:
-      - minio
-      - django
-    expose:
-      - "8080"
     command: ['nginx', '-g', 'daemon off;']
     build:
       context: "."
+    depends_on:
+      - minio
+      - django
+    ports:
+      - "3000:80"
   smtp:
     container_name: md_mailpit
     image: axllent/mailpit:latest
     expose:
-      - "1026"
+      - "1025"
     ports:
-      - 1026:1025
-      - 8026:8025
+      - 3025:8025
     volumes:
       - ../media:/data
     environment:
@@ -64,8 +59,8 @@ services:
       - ../:/app/:rw
     environment:
       DATABASE_URL: postgres://app_user:changeme@db/app_db
-      VITE_API_URL: http://localhost:8080/api
-      VITE_AVATAR_ROOT: http://localhost:8080/
+      VITE_API_URL: http://localhost:3000/api
+      VITE_AVATAR_ROOT: http://localhost:3000/
     expose:
       - "8000"
     user: ${USERID}:${GROUPID}

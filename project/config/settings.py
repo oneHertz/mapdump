@@ -181,7 +181,7 @@ REST_AUTH_SERIALIZERS = {
     "PASSWORD_RESET_SERIALIZER": "utils.serializers.CustomPasswordResetSerializer",
 }
 
-URL_FRONT = "http://localhost:8080"
+URL_FRONT = "http://localhost:3000"
 
 
 SLUG_BLACKLIST = [
@@ -725,7 +725,7 @@ ACCOUNT_ADAPTER = "utils.account_adapter.CustomAccountAdapter"
 CUSTOM_ACCOUNT_CONFIRM_EMAIL_URL = "/verify-email/{0}"
 
 EMAIL_HOST = "smtp"
-EMAIL_PORT = 1026
+EMAIL_PORT = 1025
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
@@ -741,7 +741,7 @@ AWS_ACCESS_KEY_ID = "minio"
 AWS_SECRET_ACCESS_KEY = "minio123"
 # The optional AWS session token to use.
 AWS_SESSION_TOKEN = ""
-AWS_S3_ENDPOINT_URL = "http://minio:9001"
+AWS_S3_ENDPOINT_URL = "http://minio:9000"
 AWS_S3_BUCKET = "mapdump"
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
