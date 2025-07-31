@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   db:
+    container_name: md_postgres
     image: postgres:15.1
     environment:
       POSTGRES_DB: app_db
@@ -10,13 +11,14 @@ services:
     expose:
       - "5432"
   minio:
+    container_name: md_minio
     image: minio/minio:latest
     volumes:
       - ../media:/data
     expose:
-      - "9000"
+      - "9001"
     ports:
-      - "9000:9000"
+      - "9001:9000"
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio123
@@ -24,6 +26,7 @@ services:
       - server
       - /data
   nginx:
+    container_name: md_nginx
     image: rphlo/nginx:latest
     ports:
       - "8080:8080"
@@ -39,11 +42,13 @@ services:
     build:
       context: "."
   smtp:
+    container_name: md_mailpit
     image: axllent/mailpit:latest
     expose:
-      - "1025"
+      - "1026"
     ports:
-      - 8025:8025
+      - 1026:1025
+      - 8026:8025
     volumes:
       - ./media:/data
     environment:

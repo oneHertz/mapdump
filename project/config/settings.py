@@ -725,7 +725,7 @@ ACCOUNT_ADAPTER = "utils.account_adapter.CustomAccountAdapter"
 CUSTOM_ACCOUNT_CONFIRM_EMAIL_URL = "/verify-email/{0}"
 
 EMAIL_HOST = "smtp"
-EMAIL_PORT = 1025
+EMAIL_PORT = 1026
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
