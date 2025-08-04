@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 FORCE_LOWERCASE_TAGS = True
 MAX_TAG_LENGTH = 30

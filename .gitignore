@@ -25,4 +25,4 @@ var/*
 node_modules/*
 cypress/screenshots/*
 cypress/videos/*
-project/cache
+cache
