@@ -12,6 +12,6 @@ if [ "$PREV_MD5SUM" != "$NEW_MD5SUM" ]
 then
   uv pip install -U -r requirements.txt
 fi
-project/manage.py migrate --noinput
-project/manage.py build_frontend
+manage.py migrate --noinput
+manage.py build_frontend
 ./bin/reload
