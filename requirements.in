@@ -1,12 +1,12 @@
 arrow
 diskcache
-django<5
+django
 pillow
 django-cors-headers
 requests
 djangorestframework
 uwsgi
-psycopg2
+psycopg[binary,pool]
 raven
 django-rest-knox
 timezonefinder

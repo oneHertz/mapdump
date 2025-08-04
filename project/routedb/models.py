@@ -6,9 +6,9 @@ import os
 import re
 import subprocess
 import tempfile
+from datetime import timezone
 from datetime import datetime
 from io import BytesIO
-
 import arrow
 import gpxpy
 from django.conf import settings
@@ -17,7 +17,7 @@ from django.core.cache import cache
 from django.core.files.base import ContentFile, File
 from django.db import models
 from django.urls import reverse
-from django.utils.timezone import now, utc
+from django.utils.timezone import now
 from django_s3_storage.storage import S3Storage
 from PIL import Image
 from tagging.registry import register as register_tagged_model
@@ -367,7 +367,7 @@ class Route(models.Model):
 
     def prefetch_route_extras(self, *args, **kwargs):
         if self.route[0]["time"]:
-            self.start_time = datetime.fromtimestamp(self.route[0]["time"], utc)
+            self.start_time = datetime.fromtimestamp(self.route[0]["time"], timezone.utc)
             self.duration = self.get_duration()
         elif self.start_time is None:
             self.start_time = now()
