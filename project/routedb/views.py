@@ -603,7 +603,7 @@ def athlete_avatar(request, athlete_username):
     if athlete_settings.avatar:
         return HttpResponse(athlete_settings.avatar.read(), content_type="image/png")
     with open(
-        os.path.join(settings.BASE_DIR, "routedb", "default-avatar.png"), "rb"
+        os.path.join(settings.BASE_DIR, "project", "routedb", "default-avatar.png"), "rb"
     ) as fp:
         return HttpResponse(fp.read(), content_type="image/png")
 
