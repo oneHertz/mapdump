@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -67,8 +66,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "project.urls"
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, "project", "templates")
-CLIENT_DIR = os.path.join(BASE_DIR, "project", "frontend")  # react app location
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+CLIENT_DIR = os.path.join(BASE_DIR, "frontend")  # react app location
+
 BUILD_DIR = os.path.join(CLIENT_DIR, "build")  # react app build location
 
 TEMPLATES = [
@@ -143,11 +143,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, "static"))
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, "..", "static"))
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BUILD_DIR, "static")]
 
-MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, "media"))
+MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, "..", "media"))
 MEDIA_URL = "/media/"
 
 
@@ -749,7 +749,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 CACHES = {
     "default": {
         "BACKEND": "diskcache.DjangoCache",
-        "LOCATION": os.path.join(BASE_DIR, "cache"),
+        "LOCATION": os.path.join(BASE_DIR, "..", "cache"),
         "TIMEOUT": 300,
         # ^-- Django setting for default timeout of each key.
         "SHARDS": 4,

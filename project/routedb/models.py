@@ -411,7 +411,7 @@ class Route(models.Model):
                     self.tz,
                 ],
                 stderr=subprocess.STDOUT,
-                cwd=os.path.join(settings.BASE_DIR, "project", "jstools"),
+                cwd=os.path.join(settings.BASE_DIR, "jstools"),
                 env=dict(os.environ, NODE_OPTIONS="--openssl-legacy-provider"),
             )
 
