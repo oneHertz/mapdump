@@ -3,14 +3,14 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BASEDIR=$(dirname $DIR)
 cd $BASEDIR
-PREV_MD5SUM="$(md5sum project/requirements.txt)"
+PREV_MD5SUM="$(md5sum requirements.txt)"
 git fetch
 git reset origin/master --hard
 source $BASEDIR/env/bin/activate
-NEW_MD5SUM="$(md5sum project/requirements.txt)"
+NEW_MD5SUM="$(md5sum requirements.txt)"
 if [ "$PREV_MD5SUM" != "$NEW_MD5SUM" ]
 then
-  uv pip install -U -r project/requirements.txt
+  uv pip install -U -r requirements.txt
 fi
 project/manage.py migrate --noinput
 project/manage.py build_frontend
