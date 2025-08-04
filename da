@@ -2,4 +2,4 @@
 
 DIR=$(dirname "$0")
 cd $DIR
-./dc exec django /venv/bin/python manage.py "$@"
+./dc exec django python manage.py "$@"

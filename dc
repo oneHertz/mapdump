@@ -28,17 +28,13 @@ elif [ "$1" = 'restoredb' ]; then
     exit 0
 elif [ "$1" = 'pipcompile' ]; then
     echo "Compiling pip env..."
-    docker exec -u root -i md_django \
-        /venv/bin/pip install --no-cache-dir -U uv && \
-    docker exec -i -u root -e "VIRTUAL_ENV=/venv/" md_django \
-        /venv/bin/uv pip compile requirements.in --upgrade --no-header --no-annotate --output-file -o requirements.txt
+    docker exec -i -u root md_django \
+        uv pip compile requirements.in --upgrade --no-header --no-annotate --output-file -o requirements.txt
     exit 0
 elif [ "$1" = 'pipinstall' ]; then
     echo "Updating pip env..."
-    docker exec -u root -i md_django \
-        /venv/bin/pip install --no-cache-dir -U uv && \
-    docker exec -i -u root -e "VIRTUAL_ENV=/venv/" md_django \
-        /venv/bin/uv pip install -r requirements.txt
+    docker exec -i -u root md_django \
+        uv pip install -r requirements.txt
     exit
 elif [ "$1" = 'test' ]; then
     shift

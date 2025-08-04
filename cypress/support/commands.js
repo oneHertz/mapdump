@@ -28,13 +28,13 @@ import "cypress-file-upload";
 beforeEach(function () {
   cy.log("I run before every test in every spec file!!!!!!");
   cy.exec(
-    "docker exec md_django /venv/bin/python /app/manage.py flush --noinput"
+    "docker exec md_django python /app/manage.py flush --noinput"
   );
   cy.exec(
-    "docker exec md_django /venv/bin/python /app/manage.py migrate --noinput"
+    "docker exec md_django python /app/manage.py migrate --noinput"
   );
   cy.exec(
-    "docker exec md_django /venv/bin/python /app/manage.py shell -c \"from django.contrib.auth.models import User;user = User.objects.create_user('tester', 'test@example.com', 'abc123');from allauth.account.models import EmailAddress;EmailAddress.objects.create(user=user,email='test@example.com',primary=True,verified=True)\""
+    "docker exec md_django python /app/manage.py shell -c \"from django.contrib.auth.models import User;user = User.objects.create_user('tester', 'test@example.com', 'abc123');from allauth.account.models import EmailAddress;EmailAddress.objects.create(user=user,email='test@example.com',primary=True,verified=True)\""
   );
 });
 
