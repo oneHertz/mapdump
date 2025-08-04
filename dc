@@ -43,7 +43,7 @@ fi
 
 export GROUPID=$(id -g) USERID=$(id -u)
 exec docker-compose \
-        --file docker/docker-compose.yml \
-        --project-name $project_name \
-        $extra_args \
-        "$@"
+    --file docker/docker-compose.yml \
+    --project-name $project_name \
+    $extra_args \
+    "$@"

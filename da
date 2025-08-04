@@ -1,5 +1,3 @@
 #!/bin/sh
 
-DIR=$(dirname "$0")
-cd $DIR
-./dc exec django python manage.py "$@"
+./dc exec django python ./manage.py "$@"

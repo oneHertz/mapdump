@@ -760,7 +760,7 @@ CACHES = {
 }
 
 NODEJS_PATH = "node"
-YARN_PATH = "yarn"
+YARN_PATH = "pnpm"
 try:
     from .local_settings import *  # noqa: F403, F401
 except ImportError as e:
