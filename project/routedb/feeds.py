@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.syndication.views import Feed
-from routedb.models import Route
+from project.routedb.models import Route
 
 
 class LatestRoutesFeed(Feed):

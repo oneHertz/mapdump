@@ -5,8 +5,8 @@
 # from django.conf import settings
 from django.db import migrations
 
-# from routedb.models import RasterMap
-# from utils.s3 import s3_rename_object
+# from project.routedb.models import RasterMap
+# from project.utils.s3 import s3_rename_object
 
 
 def transfer_data(apps, schema_editor):

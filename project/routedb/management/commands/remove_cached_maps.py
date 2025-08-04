@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.core.management.base import BaseCommand
-from routedb.models import Route
+from project.routedb.models import Route
 
 
 class Command(BaseCommand):

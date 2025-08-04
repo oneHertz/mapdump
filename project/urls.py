@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic import TemplateView
-from routedb import views
+from project.routedb import views
 
 urlpatterns = [
     re_path(
@@ -27,7 +27,7 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls),
     path("drf-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("api/v1/", include("routedb.urls")),
+    path("api/v1/", include("project.routedb.urls")),
     path("", views.index_view, name="index"),
     re_path(
         r"^password-reset-confirmation/(?P<uidb64>[0-9A-Za-z_\-]+):(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$",

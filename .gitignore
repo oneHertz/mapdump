@@ -19,7 +19,7 @@ media/*
 static/*
 htmlcov/*
 env/*
-project/project/local_settings.py
+local_settings.py
 log/*
 var/*
 node_modules/*

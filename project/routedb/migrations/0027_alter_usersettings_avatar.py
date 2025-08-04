@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django_s3_storage.storage
-import routedb.models
+import project.routedb.models
 
 
 class Migration(migrations.Migration):
@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usersettings',
             name='avatar',
-            field=models.ImageField(blank=True, null=True, storage=django_s3_storage.storage.S3Storage(aws_s3_bucket_name='mapdump'), upload_to=routedb.models.avatar_upload_path),
+            field=models.ImageField(blank=True, null=True, storage=django_s3_storage.storage.S3Storage(aws_s3_bucket_name='mapdump'), upload_to=project.routedb.models.avatar_upload_path),
         ),
     ]

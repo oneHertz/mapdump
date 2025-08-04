@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from routedb.models import RasterMap
+from project.routedb.models import RasterMap
 
 
 class Command(BaseCommand):

@@ -2,7 +2,7 @@
 
 import django.db.models.deletion
 import django.utils.timezone
-import utils.helper
+import project.utils.helper
 from django.conf import settings
 from django.db import migrations, models
 
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             model_name="route",
             name="uid",
             field=models.CharField(
-                default=utils.helper.random_key,
+                default=project.utils.helper.random_key,
                 editable=False,
                 max_length=12,
                 unique=True,

@@ -21,8 +21,8 @@ from django.utils.timezone import now, utc
 from django_s3_storage.storage import S3Storage
 from PIL import Image
 from tagging.registry import register as register_tagged_model
-from utils.helper import country_at_coords, random_key, time_base64, tz_at_coords
-from utils.validators import (
+from project.utils.helper import country_at_coords, random_key, time_base64, tz_at_coords
+from project.utils.validators import (
     validate_corners_coordinates,
     validate_latitude,
     validate_longitude,

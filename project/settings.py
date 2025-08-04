@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "routedb",
+    "project.routedb",
     "tagging",
     "django.contrib.admin",
     "corsheaders",
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "project.urls"
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 CLIENT_DIR = os.path.join(BASE_DIR, "frontend")  # react app location
@@ -78,18 +78,18 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                "utils.context_processors.url_front",
+                "project.utils.context_processors.url_front",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "utils.context_processors.site",
+                "project.utils.context_processors.site",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 FORCE_LOWERCASE_TAGS = True
 MAX_TAG_LENGTH = 30
@@ -154,7 +154,7 @@ MEDIA_URL = "/media/"
 # Django Rest Framework Config
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "utils.auth.TokenAuthSupportQueryString",
+        "project.utils.auth.TokenAuthSupportQueryString",
         "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": [],
@@ -168,17 +168,17 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Django CORS Headers
 CORS_ALLOW_ALL_ORIGINS = True
 
-AUTHENTICATION_BACKENDS = ("utils.backends.CaseInsensitiveModelBackend",)
+AUTHENTICATION_BACKENDS = ("project.utils.backends.CaseInsensitiveModelBackend",)
 
 
 SITE_ID = 1
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "utils.serializers.RegisterSerializer",
+    "REGISTER_SERIALIZER": "project.utils.serializers.RegisterSerializer",
 }
 
 REST_AUTH_SERIALIZERS = {
-    "PASSWORD_RESET_SERIALIZER": "utils.serializers.CustomPasswordResetSerializer",
+    "PASSWORD_RESET_SERIALIZER": "project.utils.serializers.CustomPasswordResetSerializer",
 }
 
 URL_FRONT = "http://localhost:3000"
@@ -721,7 +721,7 @@ ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 ACCOUNT_USERNAME_BLACKLIST = SLUG_BLACKLIST
 ACCOUNT_USERNAME_MIN_LENGTH = 2
 ACCOUNT_USERNAME_VALIDATORS = "utils.validators.custom_username_validators"
-ACCOUNT_ADAPTER = "utils.account_adapter.CustomAccountAdapter"
+ACCOUNT_ADAPTER = "project.utils.account_adapter.CustomAccountAdapter"
 CUSTOM_ACCOUNT_CONFIRM_EMAIL_URL = "/verify-email/{0}"
 
 EMAIL_HOST = "smtp"
