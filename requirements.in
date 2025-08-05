@@ -5,7 +5,6 @@ pillow
 django-cors-headers
 requests
 djangorestframework
-uwsgi
 psycopg[binary,pool]
 raven
 django-rest-knox
@@ -20,3 +19,4 @@ django-tagging @ git+https://github.com/rphlo/django-tagging
 patchy
 dj_database_url
 sentry_sdk
+gunicorn

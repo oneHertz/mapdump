@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=Simple
-ExecStart=/apps/mapdump/env/bin/uwsgi --ini /apps/mapdump/bin/uwsgi.ini
+ExecStart=/apps/mapdump/env/bin/gunicorn -c /apps/mapdump/bin/gunicorn.conf.py -b unix:/apps/mapdump/var/django.sock
 Restart=always
 Environment="PATH=/apps/mapdump/env/bin/"
 WorkingDirectory=/apps/mapdump/project
