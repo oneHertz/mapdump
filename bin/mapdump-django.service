@@ -8,7 +8,7 @@ Type=Simple
 ExecStart=/apps/mapdump/env/bin/gunicorn -c /apps/mapdump/bin/gunicorn.conf.py -b unix:/apps/mapdump/var/django.sock
 Restart=always
 Environment="PATH=/apps/mapdump/env/bin/"
-WorkingDirectory=/apps/mapdump/project
+WorkingDirectory=/apps/mapdump
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutSec=5
