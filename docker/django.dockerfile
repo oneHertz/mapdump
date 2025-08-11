@@ -38,4 +38,3 @@ RUN chmod a+x /app/project/jstools/generate_map.js
 ENV DJANGO_SETTINGS_MODULE=project.settings
 
 RUN DATABASE_URL="sqlite://:memory:" python manage.py collectstatic --noinput
-

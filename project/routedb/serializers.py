@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+
 from project.routedb.models import Comment, RasterMap, Route, ThumbUp, UserSettings
 from project.utils.validators import (
     custom_username_validators,
@@ -86,7 +87,9 @@ class RelativeURLField(serializers.ReadOnlyField):
 
 
 class UserSettingsSerializer(serializers.ModelSerializer):
-    avatar_base64 = serializers.CharField(source="avatar_b64", write_only=True, allow_blank=True)
+    avatar_base64 = serializers.CharField(
+        source="avatar_b64", write_only=True, allow_blank=True
+    )
 
     def validate_avatar_base64(self, value):
         if not value:

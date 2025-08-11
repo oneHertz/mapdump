@@ -146,7 +146,7 @@ const Avatar = () => {
                 inputRef.current.currentImage = null;
                 setDefaultImage(defaultAvatar)
             }}><i className="fa-solid fa-trash" /> Clear</button>
-            
+
           </form>
         </>
       }
