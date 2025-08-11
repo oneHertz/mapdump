@@ -716,8 +716,8 @@ SLUG_BLACKLIST = [
     "password-reset-confirmation",
 ]
 
-ACCOUNT_LOGIN_METHODS = {'username'}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {"username"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 ACCOUNT_USERNAME_BLACKLIST = SLUG_BLACKLIST
 ACCOUNT_USERNAME_MIN_LENGTH = 2
 ACCOUNT_USERNAME_VALIDATORS = "utils.validators.custom_username_validators"

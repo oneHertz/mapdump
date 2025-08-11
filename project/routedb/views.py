@@ -24,6 +24,10 @@ from rest_framework.decorators import api_view
 from rest_framework.pagination import CursorPagination
 from rest_framework.permissions import SAFE_METHODS, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+from stravalib import Client as StravaClient
+from tagging.models import TaggedItem
+from tagging.utils import get_tag
+
 from project.routedb.models import Comment, RasterMap, Route, ThumbUp, UserSettings
 from project.routedb.serializers import (
     AuthTokenSerializer,
@@ -36,9 +40,6 @@ from project.routedb.serializers import (
     UserMainSerializer,
     UserSettingsSerializer,
 )
-from stravalib import Client as StravaClient
-from tagging.models import TaggedItem
-from tagging.utils import get_tag
 from project.utils.s3 import s3_object_url
 
 

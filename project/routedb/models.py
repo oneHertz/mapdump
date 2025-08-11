@@ -6,9 +6,9 @@ import os
 import re
 import subprocess
 import tempfile
-from datetime import timezone
-from datetime import datetime
+from datetime import datetime, timezone
 from io import BytesIO
+
 import arrow
 import gpxpy
 from django.conf import settings
@@ -21,7 +21,13 @@ from django.utils.timezone import now
 from django_s3_storage.storage import S3Storage
 from PIL import Image
 from tagging.registry import register as register_tagged_model
-from project.utils.helper import country_at_coords, random_key, time_base64, tz_at_coords
+
+from project.utils.helper import (
+    country_at_coords,
+    random_key,
+    time_base64,
+    tz_at_coords,
+)
 from project.utils.validators import (
     validate_corners_coordinates,
     validate_latitude,
@@ -367,7 +373,9 @@ class Route(models.Model):
 
     def prefetch_route_extras(self, *args, **kwargs):
         if self.route[0]["time"]:
-            self.start_time = datetime.fromtimestamp(self.route[0]["time"], timezone.utc)
+            self.start_time = datetime.fromtimestamp(
+                self.route[0]["time"], timezone.utc
+            )
             self.duration = self.get_duration()
         elif self.start_time is None:
             self.start_time = now()
