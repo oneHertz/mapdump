@@ -260,6 +260,8 @@ export const drawRoute = (
     ctx3.lineWidth = weight + 2 * outlineWidth;
     ctx3.strokeStyle = "black";
     ctx3.beginPath();
+    ctx3.lineCap = "round";
+    ctx3.lineJoin = "round";
     let prevPt = null;
     for (let i = 0; i < route.length; i++) {
       const pt = transform(new LatLng(route[i].latlng[0], route[i].latlng[1]));
@@ -285,14 +287,24 @@ export const drawRoute = (
     ctx3.globalCompositeOperation = "source-over";
 
     // drawColoredPath
-    let prevIdx = 0;
-    for (let j = 1; j < route.length; j++) {
-      const pointStart = transform(
-        new LatLng(route[prevIdx].latlng[0], route[prevIdx].latlng[1])
-      );
+    ctx2.lineWidth = weight;
+    ctx2.lineCap = "round";
+    ctx2.lineJoin = "round";
+    let pointStart = transform(
+      new LatLng(route[0].latlng[0], route[0].latlng[1])
+    );
+    for (let j = 1; j < route.length; j++) {  
       const pointEnd = transform(
         new LatLng(route[j].latlng[0], route[j].latlng[1])
       );
+      const distanceX = pointEnd.x - pointStart.x;
+      const distanceY = pointEnd.x - pointStart.x;
+      const d = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+      
+      if (d < 1) {
+        continue;
+      }
+
       // Create a gradient for each segment, pick start end end colors from palette gradient
       const gradient = ctx2.createLinearGradient(
         Math.round(pointStart.x - bounds.minX),
@@ -300,13 +312,12 @@ export const drawRoute = (
         Math.round(pointEnd.x - bounds.minX),
         Math.round(pointEnd.y - bounds.minY)
       );
-      const gradientStartRGB = getRGBForValue(speeds[prevIdx]);
+      ctx2.strokeStyle = gradient;
+      const gradientStartRGB = getRGBForValue(speeds[j - 1]);
       const gradientEndRGB = getRGBForValue(speeds[j]);
       gradient.addColorStop(0, "rgb(" + gradientStartRGB.join(",") + ")");
       gradient.addColorStop(1, "rgb(" + gradientEndRGB.join(",") + ")");
 
-      ctx2.lineWidth = weight;
-      ctx2.strokeStyle = gradient;
       ctx2.beginPath();
       ctx2.moveTo(
         Math.round(pointStart.x - bounds.minX),
@@ -317,7 +328,8 @@ export const drawRoute = (
         Math.round(pointEnd.y - bounds.minY)
       );
       ctx2.stroke();
-      prevIdx++;
+  
+      pointStart = pointEnd;
     }
 
     if (route.length && route[0].time) {

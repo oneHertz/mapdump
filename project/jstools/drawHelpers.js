@@ -211,6 +211,8 @@ const drawRoute = async (
     // drawOutline
     ctx3.lineWidth = weight + 2 * outlineWidth;
     ctx3.strokeStyle = "black";
+    ctx3.lineCap = "round";
+    ctx3.lineJoin = "round";
     ctx3.beginPath();
     let prevPt = null;
     for (let i = 0; i < route.length; i++) {
@@ -237,13 +239,23 @@ const drawRoute = async (
     ctx3.globalCompositeOperation = "source-over";
 
     // drawColoredPath
-    for (let j = 1; j < route.length; j++) {
-      const pointStart = transform(
-        new LatLon(route[j - 1].latLon[0], route[j - 1].latLon[1])
-      );
+    ctx2.lineWidth = weight;
+    ctx2.lineCap = "round";
+    ctx2.lineJoin = "round";
+    let pointStart = transform(
+      new LatLon(route[0].latLon[0], route[0].latLon[1])
+    );
+    for (let j = 1; j < route.length; j++) {  
       const pointEnd = transform(
         new LatLon(route[j].latLon[0], route[j].latLon[1])
       );
+      const distanceX = pointEnd.x - pointStart.x;
+      const distanceY = pointEnd.x - pointStart.x;
+      const d = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+      
+      if (d < 1) {
+        continue;
+      }
 
       // Create a gradient for each segment, pick start end end colors from palette gradient
       const gradient = ctx2.createLinearGradient(
@@ -256,9 +268,8 @@ const drawRoute = async (
       const gradientEndRGB = getRGBForValue(speeds[j]);
       gradient.addColorStop(0, "rgb(" + gradientStartRGB.join(",") + ")");
       gradient.addColorStop(1, "rgb(" + gradientEndRGB.join(",") + ")");
-
-      ctx2.lineWidth = weight;
       ctx2.strokeStyle = gradient;
+    
       ctx2.beginPath();
       ctx2.moveTo(
         Math.round(pointStart.x - bounds.minX),
@@ -269,6 +280,8 @@ const drawRoute = async (
         Math.round(pointEnd.y - bounds.minY)
       );
       ctx2.stroke();
+
+      pointStart = pointEnd;
     }
 
     if (route.length && route[0].time) {
