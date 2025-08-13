@@ -214,6 +214,7 @@ const RouteReplay = (props) => {
     setPlaying(false);
   };
   const onChangeProgress = ({ x }) => {
+    console.log(x)
     setProgress(x);
   };
   const onSlower = () => {
@@ -304,9 +305,9 @@ const RouteReplay = (props) => {
                 style={{ width: "100%" }}
                 axis="x"
                 onChange={onChangeProgress}
-                xmin="0"
-                xmax="100"
-                xstep=".1"
+                xmin={0}
+                xmax={100}
+                xstep={0.1}
                 x={progress}
               />
             </span>
