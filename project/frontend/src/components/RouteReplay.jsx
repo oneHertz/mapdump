@@ -214,7 +214,6 @@ const RouteReplay = (props) => {
     setPlaying(false);
   };
   const onChangeProgress = ({ x }) => {
-    console.log(x)
     setProgress(x);
   };
   const onSlower = () => {
