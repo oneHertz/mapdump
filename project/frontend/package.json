@@ -33,7 +33,7 @@
     "react-tooltip": "^3.11.2",
     "sax": "^1.4.1",
     "styled-components": "^5.3.5",
-    "sweetalert2": "^11.12.4",
+    "sweetalert2": "^11.22.4",
     "vanilla-lazyload": "^13.0.1",
     "vite": "^6.3.5",
     "web-vitals": "^2.0.1",
