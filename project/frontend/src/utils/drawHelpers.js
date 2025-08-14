@@ -293,14 +293,14 @@ export const drawRoute = (
     let pointStart = transform(
       new LatLng(route[0].latlng[0], route[0].latlng[1])
     );
-    for (let j = 1; j < route.length; j++) {  
+    for (let j = 1; j < route.length; j++) {
       const pointEnd = transform(
         new LatLng(route[j].latlng[0], route[j].latlng[1])
       );
       const distanceX = pointEnd.x - pointStart.x;
       const distanceY = pointEnd.x - pointStart.x;
       const d = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-      
+
       if (d < 1) {
         continue;
       }
@@ -328,7 +328,7 @@ export const drawRoute = (
         Math.round(pointEnd.y - bounds.minY)
       );
       ctx2.stroke();
-  
+
       pointStart = pointEnd;
     }
 
