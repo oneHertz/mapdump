@@ -245,14 +245,14 @@ const drawRoute = async (
     let pointStart = transform(
       new LatLon(route[0].latLon[0], route[0].latLon[1])
     );
-    for (let j = 1; j < route.length; j++) {  
+    for (let j = 1; j < route.length; j++) {
       const pointEnd = transform(
         new LatLon(route[j].latLon[0], route[j].latLon[1])
       );
       const distanceX = pointEnd.x - pointStart.x;
       const distanceY = pointEnd.x - pointStart.x;
       const d = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-      
+
       if (d < 1) {
         continue;
       }
@@ -269,7 +269,7 @@ const drawRoute = async (
       gradient.addColorStop(0, "rgb(" + gradientStartRGB.join(",") + ")");
       gradient.addColorStop(1, "rgb(" + gradientEndRGB.join(",") + ")");
       ctx2.strokeStyle = gradient;
-    
+
       ctx2.beginPath();
       ctx2.moveTo(
         Math.round(pointStart.x - bounds.minX),
