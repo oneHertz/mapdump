@@ -3,102 +3,113 @@ import * as L from "leaflet";
 import "../utils/Leaflet.ImageTransform";
 
 var backdropMaps = {
-  osm: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    className: "wms256",
-  }),
-  "gmap-street": L.tileLayer("https://mt0.google.com/vt/x={x}&y={y}&z={z}", {
-    attribution: "&copy; Google",
-    className: "wms256",
-  }),
-  "gmap-hybrid": L.tileLayer(
-    "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
-    {
-      attribution: "&copy; Google",
-      className: "wms256",
-    }
-  ),
-  "gmap-terrain": L.tileLayer(
-    "https://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}",
-    {
-      attribution: "&copy; Google",
-      className: "wms256",
-    }
-  ),
-  "topo-fi": L.tileLayer(
-    "https://tiles.kartat.kapsi.fi/peruskartta/{z}/{x}/{y}.jpg",
-    {
-      attribution: "&copy; National Land Survey of Finland",
-      className: "wms256",
-    }
-  ),
-  "mapant-fi": L.tileLayer(
-    "https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&x={x}&y={y}",
-    {
-      attribution: "&copy; MapAnt.fi and National Land Survey of Finland",
-      className: "wms256",
-    }
-  ),
-  "topo-no": L.tileLayer(
-    "https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}",
-    {
-      attribution: "",
-      className: "wms256",
-    }
-  ),
-  "topo-uk": L.tileLayer(
-    "https://api.os.uk/maps/raster/v1/zxy/Outdoor_3857/{z}/{x}/{y}.png?key=5T04qXvNDxLX1gCEAXS0INCgLvczGRYw",
-    {
-      attribution: "&copy; Ordnance Survey",
-      className: "wms256",
-    }
-  ),
-  "mapant-no": L.tileLayer("https://mapant.no/osm-tiles/{z}/{x}/{y}.png", {
-    attribution: "&copy; MapAnt.no",
-    className: "wms256",
-  }),
-  "mapant-ch": L.tileLayer(
-    "https://tile-proxy.routechoices.com/ch/{z}/{x}/{y}.jpg",
-    {
-      attribution: "&copy; MapAnt.ch",
-      className: "wms256",
-    }
-  ),
-  "mapant-se": L.tileLayer(
-    "https://tile-proxy.routechoices.com/se/{z}/{x}/{y}.jpg",
-    {
-      attribution: "&copy; gokartor.se",
-      className: "wms256",
-    }
-  ),
-  "topo-fr": L.tileLayer(
-    "https://wxs.ign.fr/choisirgeoportail/geoportail/wmts?layer=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&tilematrix={z}&tilecol={x}&tilerow={y}",
-    {
-      attribution:
-        '<a href="https://www.ign.fr/" target="_blank">&copy; IGN France</a>',
-      className: "wms256",
-    }
-  ),
-  "mapant-es": L.tileLayer.wms("https://mapant.es/wms", {
-    layers: "mapant.es",
-    format: "image/png",
-    version: "1.3.0",
-    transparent: true,
-    attribution: "&copy; MapAnt.es",
-    className: "wms256",
-  }),
-  "topo-world": L.tileLayer("https://tile.opentopomap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenTopoMap (CC-BY-SA)",
-    className: "wms256",
-  }),
-  "topo-world-alt": L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
-    {
-      attribution: "&copy; ArcGIS Online",
-      className: "wms256",
-    }
-  ),
+	osm: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		attribution:
+			'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		className: "wms256",
+	}),
+	"gmap-street": L.tileLayer("https://mt0.google.com/vt/x={x}&y={y}&z={z}", {
+		attribution: "&copy; Google",
+		className: "wms256",
+	}),
+	"gmap-hybrid": L.tileLayer(
+		"https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
+		{
+			attribution: "&copy; Google",
+			className: "wms256",
+		},
+	),
+	"gmap-terrain": L.tileLayer(
+		"https://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}",
+		{
+			attribution: "&copy; Google",
+			className: "wms256",
+		},
+	),
+	"topo-fi": L.tileLayer.wms("https://tiles.kartat.kapsi.fi/peruskartta", {
+		attribution: "&copy; National Land Survey of Finland",
+		className: "wms256",
+		layers: "peruskartta",
+	}),
+	"mapant-ee": L.tileLayer(
+		"https://tiles.routechoices.com/proxy/ee/{z}/{x}/{y}.webp",
+		{
+			attribution: "&copy; mapantee.gokartor.se and Estonian Land Board",
+			className: "wms256",
+		},
+	),
+	"mapant-fi": L.tileLayer(
+		"https://www.mapant.fi/wmts/wmts_EPSG3857.php?z={z}&x={x}&y={y}",
+		{
+			attribution: "&copy; MapAnt.fi and National Land Survey of Finland",
+			className: "wms256",
+		},
+	),
+	"topo-no": L.tileLayer(
+		"https://cache.kartverket.no/v1/wmts/1.0.0/toporaster/default/webmercator/{z}/{y}/{x}.png",
+		{
+			attribution: "",
+			className: "wms256",
+		},
+	),
+	"topo-uk": L.tileLayer(
+		"https://tiles.routechoices.com/proxy/uk/{z}/{x}/{y}.webp",
+		{
+			attribution: "&copy; Ordnance Survey",
+			className: "wms256",
+			minZoom: 7,
+			maxNativeZoom: 15,
+			bounds: [
+				[49.75, -9.01],
+				[61.01, 2.01],
+			],
+		},
+	),
+	"mapant-no": L.tileLayer("https://mapant.no/osm-tiles/{z}/{x}/{y}.png", {
+		attribution: "&copy; MapAnt.no",
+		className: "wms256",
+	}),
+	"mapant-ch": L.tileLayer(
+		"https://tiles.routechoices.com/proxy/ch/{z}/{x}/{y}.webp",
+		{
+			attribution: "&copy; MapAnt.ch",
+			className: "wms256",
+		},
+	),
+	"mapant-se": L.tileLayer(
+		"https://tiles.routechoices.com/proxy/se/{z}/{x}/{y}.webp",
+		{
+			attribution: "&copy; gokartor.se",
+			className: "wms256",
+		},
+	),
+	"topo-fr": L.tileLayer(
+		"https://data.geopf.fr/wmts?layer=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&tilematrix={z}&tilecol={x}&tilerow={y}",
+		{
+			attribution:
+				'<a href="https://www.ign.fr/" target="_blank">&copy; IGN France</a>',
+			className: "wms256",
+		},
+	),
+	"mapant-es": L.tileLayer.wms("https://mapant.es/wms", {
+		layers: "mapant.es",
+		format: "image/png",
+		version: "1.3.0",
+		transparent: true,
+		attribution: "&copy; MapAnt.es",
+		className: "wms256",
+	}),
+	"topo-world": L.tileLayer("https://tile.opentopomap.org/{z}/{x}/{y}.png", {
+		attribution: "&copy; OpenTopoMap (CC-BY-SA)",
+		className: "wms256",
+	}),
+	"topo-world-alt": L.tileLayer(
+		"https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+		{
+			attribution: "&copy; ArcGIS Online",
+			className: "wms256",
+		},
+	),
 };
 
 function cloneLayer(layer) {
@@ -187,24 +198,32 @@ function cloneLayer(layer) {
   );
 }
 
+
+const backgroundMapTitles = {
+	osm: "Open Street Map",
+	"gmap-street": "Google Map Street",
+	"gmap-hybrid": "Google Map Satellite",
+	"gmap-terrain": "Google Map Terrain",
+	"mapant-ee": "Mapant Estonia",
+	"mapant-fi": "Mapant Finland",
+	"mapant-no": "Mapant Norway",
+	"mapant-es": "Mapant Spain",
+	"mapant-se": "Mapant Sweden",
+	"mapant-ch": "Mapant Switzerland",
+	"topo-fi": "Topo Finland",
+	"topo-fr": "Topo France",
+	"topo-no": "Topo Norway",
+	"topo-uk": "Topo UK",
+	"topo-world": "Topo World (OpenTopo)",
+	"topo-world-alt": "Topo World (ArcGIS)",
+};
+
 function getBaseLayers() {
-  return {
-    "Open Street Map": cloneLayer(backdropMaps["osm"]),
-    "Google Map Street": cloneLayer(backdropMaps["gmap-street"]),
-    "Google Map Satellite": cloneLayer(backdropMaps["gmap-hybrid"]),
-    "Google Map Terrain": cloneLayer(backdropMaps["gmap-terrain"]),
-    "Mapant Finland": cloneLayer(backdropMaps["mapant-fi"]),
-    "Mapant Norway": cloneLayer(backdropMaps["mapant-no"]),
-    "Mapant Spain": cloneLayer(backdropMaps["mapant-es"]),
-    "Mapant Sweden": cloneLayer(backdropMaps["mapant-se"]),
-    "Mapant Switzerland": cloneLayer(backdropMaps["mapant-ch"]),
-    "Topo Finland": cloneLayer(backdropMaps["topo-fi"]),
-    "Topo France": cloneLayer(backdropMaps["topo-fr"]),
-    "Topo Norway": cloneLayer(backdropMaps["topo-no"]),
-    "Topo UK": cloneLayer(backdropMaps["topo-uk"]),
-    "Topo World (OpenTopo)": cloneLayer(backdropMaps["topo-world"]),
-    "Topo World (ArcGIS)": cloneLayer(backdropMaps["topo-world-alt"]),
-  };
+	const entries = {};
+	for (const [key, value] of Object.entries(backgroundMapTitles)) {
+		entries[value] = cloneLayer(backdropMaps[key]);
+	}
+	return entries;
 }
 
 function round5(x) {

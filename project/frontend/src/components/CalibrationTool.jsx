@@ -105,8 +105,15 @@ var backdropMaps = {
 		className: "wms256",
 		layers: "peruskartta",
 	}),
+	"mapant-ee": L.tileLayer(
+		"https://tiles.routechoices.com/proxy/ee/{z}/{x}/{y}.webp",
+		{
+			attribution: "&copy; mapantee.gokartor.se and Estonian Land Board",
+			className: "wms256",
+		},
+	),
 	"mapant-fi": L.tileLayer(
-		"https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&x={x}&y={y}",
+		"https://www.mapant.fi/wmts/wmts_EPSG3857.php?z={z}&x={x}&y={y}",
 		{
 			attribution: "&copy; MapAnt.fi and National Land Survey of Finland",
 			className: "wms256",
@@ -120,7 +127,7 @@ var backdropMaps = {
 		},
 	),
 	"topo-uk": L.tileLayer(
-		"https://tile-proxy.routechoices.com/uk/{z}/{x}/{y}.webp",
+		"https://tiles.routechoices.com/proxy/uk/{z}/{x}/{y}.webp",
 		{
 			attribution: "&copy; Ordnance Survey",
 			className: "wms256",
@@ -137,14 +144,14 @@ var backdropMaps = {
 		className: "wms256",
 	}),
 	"mapant-ch": L.tileLayer(
-		"https://tile-proxy.routechoices.com/ch/{z}/{x}/{y}.webp",
+		"https://tiles.routechoices.com/proxy/ch/{z}/{x}/{y}.webp",
 		{
 			attribution: "&copy; MapAnt.ch",
 			className: "wms256",
 		},
 	),
 	"mapant-se": L.tileLayer(
-		"https://tile-proxy.routechoices.com/se/{z}/{x}/{y}.webp",
+		"https://tiles.routechoices.com/proxy/se/{z}/{x}/{y}.webp",
 		{
 			attribution: "&copy; gokartor.se",
 			className: "wms256",
@@ -265,24 +272,31 @@ function cloneLayer(layer) {
   );
 }
 
+const backgroundMapTitles = {
+	osm: "Open Street Map",
+	"gmap-street": "Google Map Street",
+	"gmap-hybrid": "Google Map Satellite",
+	"gmap-terrain": "Google Map Terrain",
+	"mapant-ee": "Mapant Estonia",
+	"mapant-fi": "Mapant Finland",
+	"mapant-no": "Mapant Norway",
+	"mapant-es": "Mapant Spain",
+	"mapant-se": "Mapant Sweden",
+	"mapant-ch": "Mapant Switzerland",
+	"topo-fi": "Topo Finland",
+	"topo-fr": "Topo France",
+	"topo-no": "Topo Norway",
+	"topo-uk": "Topo UK",
+	"topo-world": "Topo World (OpenTopo)",
+	"topo-world-alt": "Topo World (ArcGIS)",
+};
+
 function getBaseLayers() {
-  return {
-    "Open Street Map": cloneLayer(backdropMaps["osm"]),
-    "Google Map Street": cloneLayer(backdropMaps["gmap-street"]),
-    "Google Map Satellite": cloneLayer(backdropMaps["gmap-hybrid"]),
-    "Google Map Terrain": cloneLayer(backdropMaps["gmap-terrain"]),
-    "Mapant Finland": cloneLayer(backdropMaps["mapant-fi"]),
-    "Mapant Norway": cloneLayer(backdropMaps["mapant-no"]),
-    "Mapant Spain": cloneLayer(backdropMaps["mapant-es"]),
-    "Mapant Sweden": cloneLayer(backdropMaps["mapant-se"]),
-    "Mapant Switzerland": cloneLayer(backdropMaps["mapant-ch"]),
-    "Topo Finland": cloneLayer(backdropMaps["topo-fi"]),
-    "Topo France": cloneLayer(backdropMaps["topo-fr"]),
-    "Topo Norway": cloneLayer(backdropMaps["topo-no"]),
-    "Topo UK": cloneLayer(backdropMaps["topo-uk"]),
-    "Topo World (OpenTopo)": cloneLayer(backdropMaps["topo-world"]),
-    "Topo World (ArcGIS)": cloneLayer(backdropMaps["topo-world-alt"]),
-  };
+	const entries = {};
+	for (const [key, value] of Object.entries(backgroundMapTitles)) {
+		entries[value] = cloneLayer(backdropMaps[key]);
+	}
+	return entries;
 }
 
 const CalibrationTool = (props) => {
