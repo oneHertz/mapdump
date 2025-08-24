@@ -89,7 +89,7 @@ const Settings = (props) => {
   }
 
   const downloadGPX = async (a) => {
-    try {
+    //try {
       let times = null;
       let latlngs = null;
       const actRaw = await fetch(
@@ -137,7 +137,7 @@ const Settings = (props) => {
         id: a.id,
         description: act.description,
       });
-    } catch (e) {
+    /*} catch (e) {
       throw new Error(e);
       Swal.fire({
         title: "Error!",
@@ -146,7 +146,7 @@ const Settings = (props) => {
         confirmButtonText: "OK",
       });
       return;
-    }
+    }*/
   };
 
   return (
