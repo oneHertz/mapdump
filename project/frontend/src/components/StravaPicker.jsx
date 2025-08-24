@@ -89,7 +89,7 @@ const Settings = (props) => {
   }
 
   const downloadGPX = async (a) => {
-    //try {
+    try {
       let times = null;
       let latlngs = null;
       const actRaw = await fetch(
@@ -101,21 +101,19 @@ const Settings = (props) => {
           },
         }
       );
-      console.log(a.id);
       const act = await actRaw.json();
-      console.log(555);
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
-          a.id.toString() +
+          a.id +
           "/streams?key_by_type=true&keys=time,latlng",
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + stravaToken,
           },
+          mode: 'cors'
         }
       );
-      console.log("8");
       const data = await dataRaw.json();
       times = data.time.data;
       latlngs = data.latlng.data;
@@ -138,8 +136,7 @@ const Settings = (props) => {
         id: a.id,
         description: act.description,
       });
-    /*} catch (e) {
-      throw new Error(e);
+    } catch (e) {
       Swal.fire({
         title: "Error!",
         text: "Could not import this activity!",
@@ -147,7 +144,7 @@ const Settings = (props) => {
         confirmButtonText: "OK",
       });
       return;
-    }*/
+    }
   };
 
   return (
