@@ -101,7 +101,7 @@ const Settings = (props) => {
           },
         }
       );
-      console.log("q");
+      console.log(a.id);
       const act = await actRaw.json();
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
