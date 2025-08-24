@@ -137,7 +137,7 @@ const Settings = (props) => {
       });
     } catch (e) {
       Swal.fire({
-        title: "Error!",
+        title: "Error!"+e,
         text: "Could not import this activity!",
         icon: "error",
         confirmButtonText: "OK",
