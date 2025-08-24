@@ -138,7 +138,7 @@ const Settings = (props) => {
         description: act.description,
       });
     } catch (e) {
-      console.log(e);
+      throw Error(e);
       Swal.fire({
         title: "Error!",
         text: "Could not import this activity!",
