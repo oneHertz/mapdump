@@ -105,13 +105,13 @@ const Settings = (props) => {
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
           a.id +
-          "/streams?key_by_type=true&keys=time,latlng",
+          "/streams?key_by_type=true&keys=time,latlng&series_type=time",
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + stravaToken,
           },
-          mode: 'no-cors'
+          mode: 'cors'
         }
       );
       const data = await dataRaw.json();
