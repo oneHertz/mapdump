@@ -106,8 +106,8 @@ const Settings = (props) => {
       console.log(555);
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
-          a.id +
-          "/streams?key_by_type=true&keys=time,latlng&resolution=low",
+          a.id.toString() +
+          "/streams?key_by_type=true&keys=time,latlng",
         {
           headers: {
             "Content-Type": "application/json",
