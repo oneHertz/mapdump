@@ -103,6 +103,7 @@ const Settings = (props) => {
       );
       console.log(a.id);
       const act = await actRaw.json();
+      console.log(555);
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
           a.id +
@@ -114,7 +115,7 @@ const Settings = (props) => {
           },
         }
       );
-      console.log("8")
+      console.log("8");
       const data = await dataRaw.json();
       times = data.time.data;
       latlngs = data.latlng.data;
