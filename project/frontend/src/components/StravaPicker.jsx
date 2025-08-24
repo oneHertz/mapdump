@@ -111,7 +111,7 @@ const Settings = (props) => {
             "Content-Type": "application/json",
             Authorization: "Bearer " + stravaToken,
           },
-          mode: 'cors'
+          mode: 'no-cors'
         }
       );
       const data = await dataRaw.json();
