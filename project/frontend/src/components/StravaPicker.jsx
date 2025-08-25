@@ -102,6 +102,7 @@ const Settings = (props) => {
         }
       );
       const act = await actRaw.json();
+      /*
       const dataRaw = await fetch(
         "https://www.strava.com/api/v3/activities/" +
           a.id +
@@ -112,6 +113,16 @@ const Settings = (props) => {
             Authorization: "Bearer " + stravaToken,
           },
           mode: 'cors'
+        }
+      );
+      */
+      
+      const dataRaw = await fetch(
+        `${import.meta.env.VITE_API_URL}/v1/strava/get-gpx?id=${a.id}&auth=${stravaToken}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       const data = await dataRaw.json();

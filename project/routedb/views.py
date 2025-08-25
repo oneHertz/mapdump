@@ -3,7 +3,7 @@ import os.path
 import re
 import time
 import urllib
-
+import requests
 import arrow
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
@@ -617,4 +617,21 @@ def athlete_day_view(request, athlete_username, date):
         request,
         "frontend/athlete_day.html",
         {"athlete": athlete, "date": date, "date_raw": date_raw},
+    )
+
+def strava_get_gpx(request):
+    aid = request.GET.get("id")
+    auth = request.GET.get("auth")
+    if not (aid and auth):
+        raise Http404()
+    r = requests.get(
+        f"https://www.strava.com/api/v3/activities/{aid}/streams?key_by_type=true&keys=time,latlng",
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {auth}",
+        }
+    )
+    return HttpResponse(
+        r.text,
+        content_type="json"
     )
