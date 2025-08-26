@@ -335,22 +335,30 @@ export const drawRoute = (
     if (route.length && route[0].time) {
       let prevT = +route[0].time - 20e3;
       let count = 0;
-      ctx3.lineWidth = 1 / resolution;
-      ctx3.strokeStyle = "#000";
-      for (let j = 0; j < route.length; j++) {
+      ctx3.strokeStyle = "#222";
+      const size = Math.min(3, 3 / resolution);
+      for (let j = 1; j < route.length - 1; j++) {
         if (+route[j].time >= +prevT + 10e3) {
+          ctx3.lineWidth = (count % 6 === 0 ? 3 : 1) / resolution;
+          const pointStart = transform(
+            new LatLng(route[j-1].latlng[0], route[j-1].latlng[1])
+          );
           const point = transform(
             new LatLng(route[j].latlng[0], route[j].latlng[1])
           );
-          ctx3.beginPath();
-          ctx3.arc(
-            Math.round(point.x - bounds.minX),
-            Math.round(point.y - bounds.minY),
-            (count % 6 === 0 ? 3 : 1) / resolution,
-            0,
-            2 * Math.PI
+          const pointNext = transform(
+            new LatLng(route[j+1].latlng[0], route[j+1].latlng[1])
           );
-          ctx3.fill();
+          const angle = Math.atan2(pointNext.y-pointStart.y, pointNext.x-pointStart.x) + Math.PI / 2;
+          ctx3.beginPath();
+          ctx3.moveTo(
+            Math.round(point.x - bounds.minX - Math.cos(angle) * size),
+            Math.round(point.y - bounds.minY - Math.sin(angle) * size),
+          );
+          ctx3.lineTo(
+            Math.round(point.x - bounds.minX + Math.cos(angle) * size),
+            Math.round(point.y - bounds.minY + Math.sin(angle) * size),
+          );
           ctx3.stroke();
           prevT = route[j].time;
           count++;
