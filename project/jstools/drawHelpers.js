@@ -293,13 +293,13 @@ const drawRoute = async (
         if (+route[j].time >= +prevT + 10e3) {
           ctx3.lineWidth = (count % 6 === 0 ? 3 : 1) / resolution;
           const pointStart = transform(
-            new LatLon(route[j-1].latlng[0], route[j-1].latlng[1])
+            new LatLon(route[j-1].latLon[0], route[j-1].latLon[1])
           );
           const point = transform(
-            new LatLon(route[j].latlng[0], route[j].latlng[1])
+            new LatLon(route[j].latLon[0], route[j].latLon[1])
           );
           const pointNext = transform(
-            new LatLon(route[j+1].latlng[0], route[j+1].latlng[1])
+            new LatLon(route[j+1].latLon[0], route[j+1].latLon[1])
           );
           const angle = Math.atan2(pointNext.y-pointStart.y, pointNext.x-pointStart.x) + Math.PI / 2;
           ctx3.beginPath();
