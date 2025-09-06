@@ -720,7 +720,7 @@ ACCOUNT_LOGIN_METHODS = {"username"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 ACCOUNT_USERNAME_BLACKLIST = SLUG_BLACKLIST
 ACCOUNT_USERNAME_MIN_LENGTH = 2
-ACCOUNT_USERNAME_VALIDATORS = "utils.validators.custom_username_validators"
+ACCOUNT_USERNAME_VALIDATORS = "project.utils.validators.custom_username_validators"
 ACCOUNT_ADAPTER = "project.utils.account_adapter.CustomAccountAdapter"
 CUSTOM_ACCOUNT_CONFIRM_EMAIL_URL = "/verify-email/{0}"
 
