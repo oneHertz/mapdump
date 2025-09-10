@@ -116,7 +116,7 @@ const Settings = (props) => {
         }
       );
       */
-      
+
       const dataRaw = await fetch(
         `${import.meta.env.VITE_API_URL}/v1/strava/get-gpx?id=${a.id}&auth=${stravaToken}`,
         {
