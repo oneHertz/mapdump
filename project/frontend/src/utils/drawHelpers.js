@@ -341,23 +341,25 @@ export const drawRoute = (
         if (+route[j].time >= +prevT + 10e3) {
           ctx3.lineWidth = (count % 6 === 0 ? 3 : 1) / resolution;
           const pointStart = transform(
-            new LatLng(route[j-1].latlng[0], route[j-1].latlng[1])
+            new LatLng(route[j - 1].latlng[0], route[j - 1].latlng[1])
           );
           const point = transform(
             new LatLng(route[j].latlng[0], route[j].latlng[1])
           );
           const pointNext = transform(
-            new LatLng(route[j+1].latlng[0], route[j+1].latlng[1])
+            new LatLng(route[j + 1].latlng[0], route[j + 1].latlng[1])
           );
-          const angle = Math.atan2(pointNext.y-pointStart.y, pointNext.x-pointStart.x) + Math.PI / 2;
+          const angle =
+            Math.atan2(pointNext.y - pointStart.y, pointNext.x - pointStart.x) +
+            Math.PI / 2;
           ctx3.beginPath();
           ctx3.moveTo(
             Math.round(point.x - bounds.minX - Math.cos(angle) * size),
-            Math.round(point.y - bounds.minY - Math.sin(angle) * size),
+            Math.round(point.y - bounds.minY - Math.sin(angle) * size)
           );
           ctx3.lineTo(
             Math.round(point.x - bounds.minX + Math.cos(angle) * size),
-            Math.round(point.y - bounds.minY + Math.sin(angle) * size),
+            Math.round(point.y - bounds.minY + Math.sin(angle) * size)
           );
           ctx3.stroke();
           prevT = route[j].time;

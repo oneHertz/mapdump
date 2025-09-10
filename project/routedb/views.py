@@ -3,8 +3,9 @@ import os.path
 import re
 import time
 import urllib
-import requests
+
 import arrow
+import requests
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.forms import default_token_generator
@@ -619,6 +620,7 @@ def athlete_day_view(request, athlete_username, date):
         {"athlete": athlete, "date": date, "date_raw": date_raw},
     )
 
+
 def strava_get_gpx(request):
     aid = request.GET.get("id")
     auth = request.GET.get("auth")
@@ -629,9 +631,6 @@ def strava_get_gpx(request):
         headers={
             "Content-Type": "application/json",
             "Authorization": f"Bearer {auth}",
-        }
+        },
     )
-    return HttpResponse(
-        r.text,
-        content_type="json"
-    )
+    return HttpResponse(r.text, content_type="json")
