@@ -30,6 +30,12 @@ LOGIN_URL = "/drf-auth/login/"
 # Application definition
 
 INSTALLED_APPS = [
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "django_s3_storage",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -43,12 +49,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "knox",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "django_s3_storage",
 ]
 
 MIDDLEWARE = [
