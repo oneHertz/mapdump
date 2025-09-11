@@ -21,7 +21,7 @@ def email_address_exists(email):
     return EmailAddress.objects.filter(email=email).exists()
 
 
-class RegisterSerializer(serializers.Serializer):
+class CustomRegisterSerializer(serializers.Serializer):
     username = serializers.CharField(
         max_length=get_username_max_length(),
         min_length=allauth_settings.USERNAME_MIN_LENGTH,
