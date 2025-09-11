@@ -175,7 +175,7 @@ SITE_ID = 1
 
 REST_AUTH = {
     "REGISTER_SERIALIZER": "project.utils.serializers.RegisterSerializer",
-    "PASSWORD_RESET_SERIALIZER": "project.utils.serializers.CustomPasswordResetSerializer",
+    #"PASSWORD_RESET_SERIALIZER": "project.utils.serializers.CustomPasswordResetSerializer",
 }
 
 URL_FRONT = "http://localhost:3000"
