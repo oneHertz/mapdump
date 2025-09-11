@@ -174,7 +174,7 @@ AUTHENTICATION_BACKENDS = ("project.utils.backends.CaseInsensitiveModelBackend",
 SITE_ID = 1
 
 REST_AUTH = {
-    "REGISTER_SERIALIZER": "project.utils.serializers.RegisterSerializer",
+    #"REGISTER_SERIALIZER": "project.utils.serializers.RegisterSerializer",
     #"PASSWORD_RESET_SERIALIZER": "project.utils.serializers.CustomPasswordResetSerializer",
 }
 
