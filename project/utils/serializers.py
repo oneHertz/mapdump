@@ -30,7 +30,11 @@ class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(required=allauth_settings.EMAIL_REQUIRED)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    _has_phone_field = False
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._has_phone_field = False
+
     def validate_username(self, username):
         username = get_adapter().clean_username(username)
         return username
