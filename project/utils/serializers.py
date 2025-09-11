@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.Serializer):
     )
     first_name = serializers.CharField(max_length=30)
     last_name = serializers.CharField(max_length=150)
-    email = serializers.EmailField(required=allauth_settings.EMAIL_REQUIRED)
+    email = serializers.EmailField(required=True)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
     _has_phone_field = False
