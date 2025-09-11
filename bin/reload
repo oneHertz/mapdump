@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-systemctl --user reload mapdump-django
+systemctl --user restart mapdump-django
