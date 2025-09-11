@@ -30,11 +30,11 @@ LOGIN_URL = "/drf-auth/login/"
 # Application definition
 
 INSTALLED_APPS = [
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
     "django_s3_storage",
     "django.contrib.auth",
     "django.contrib.contenttypes",
