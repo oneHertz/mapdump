@@ -1,22 +1,24 @@
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 
-try:
-    from allauth.account import app_settings as allauth_settings
-    from allauth.account.adapter import get_adapter
-    from allauth.account.forms import default_token_generator
-    from allauth.account.utils import (
-        setup_user_email,
-        user_pk_to_url_str,
-        user_username,
-    )
-    from allauth.utils import email_address_exists, get_username_max_length
-except ImportError:
-    raise ImportError("allauth needs to be added to INSTALLED_APPS.")
+from allauth.account import app_settings as allauth_settings
+from allauth.account.adapter import get_adapter
+from allauth.account.forms import default_token_generator
+from allauth.account.utils import (
+    setup_user_email,
+    user_pk_to_url_str,
+    user_username,
+)
+from allauth.account.models import EmailAddress
+from allauth.utils import get_username_max_length
 
 from dj_rest_auth.forms import AllAuthPasswordResetForm as OrigResetForm
 from dj_rest_auth.serializers import PasswordResetSerializer
 from rest_framework import serializers
+
+
+def email_address_exists(email):
+    return EmailAddress.objects.filter(email=email).exists()
 
 
 class RegisterSerializer(serializers.Serializer):
