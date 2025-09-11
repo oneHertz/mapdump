@@ -30,14 +30,6 @@ LOGIN_URL = "/drf-auth/login/"
 # Application definition
 
 INSTALLED_APPS = [
-    "rest_framework",
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "django_s3_storage",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -49,6 +41,14 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "corsheaders",
     "knox",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "django_s3_storage",
 ]
 
 MIDDLEWARE = [
@@ -174,8 +174,8 @@ AUTHENTICATION_BACKENDS = ("project.utils.backends.CaseInsensitiveModelBackend",
 SITE_ID = 1
 
 REST_AUTH = {
-    "REGISTER_SERIALIZER": "project.utils.serializers.CustomRegisterSerializer",
     "PASSWORD_RESET_SERIALIZER": "project.utils.serializers.CustomPasswordResetSerializer",
+    "REGISTER_SERIALIZER": "project.utils.serializers.CustomRegisterSerializer",
 }
 
 URL_FRONT = "http://localhost:3000"
