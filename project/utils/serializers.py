@@ -1,19 +1,17 @@
-from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
-
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.forms import default_token_generator
+from allauth.account.models import EmailAddress
 from allauth.account.utils import (
     setup_user_email,
     user_pk_to_url_str,
     user_username,
 )
-from allauth.account.models import EmailAddress
 from allauth.utils import get_username_max_length
-
 from dj_rest_auth.forms import AllAuthPasswordResetForm as OrigResetForm
 from dj_rest_auth.serializers import PasswordResetSerializer
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from rest_framework import serializers
 
 
@@ -32,7 +30,7 @@ class CustomRegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._has_phone_field = False
