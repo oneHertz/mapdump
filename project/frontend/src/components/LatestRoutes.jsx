@@ -27,14 +27,14 @@ const LatestRoute = (props) => {
   }, [props.tag]);
 
   const fetchData = React.useCallback(async () => {
-    setLoading(true);
-    try {
+    const url = nextPage.current;
+    if (url) {
+      setLoading(true);
       const headers = {};
       if (api_token) {
         headers.Authorization = "Token " + api_token;
       }
-      const url = nextPage.current;
-      if (url) {
+      try {
         const res = await fetch(url, {
           credentials: "omit",
           headers,
@@ -43,16 +43,12 @@ const LatestRoute = (props) => {
         if (resp.results) {
           setRoutes((routes) => [...routes, ...resp.results]);
         }
-        if (resp.next) {
-          nextPage.current = resp.next;
-        } else {
-          nextPage.current = null;
-        }
+        nextPage.current = resp.next;
+      } catch {
+        // error handling
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      // error handling
-    } finally {
-      setLoading(false);
     }
   }, [api_token]);
 
