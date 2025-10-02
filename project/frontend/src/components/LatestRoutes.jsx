@@ -44,7 +44,9 @@ const LatestRoute = (props) => {
           setRoutes((routes) => [...routes, ...resp.results]);
         }
         if (resp.next) {
-         nextPage.current = resp.next;
+          nextPage.current = resp.next;
+        } else {
+          nextPage.current = null;
         }
       }
     } catch {
