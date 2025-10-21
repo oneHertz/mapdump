@@ -11,13 +11,13 @@ charset-normalizer==3.4.2
 cryptography==45.0.5
 diskcache==5.6.3
 dj-database-url==3.0.1
-dj-rest-auth==7.0.1
-django==5.2.6
-django-allauth==65.10.0
+dj-rest-auth[with-social,with_social]==7.0.1
+django==5.2.7
+django-allauth[socialaccount]==65.10.0
 django-cors-headers==4.7.0
 django-rest-knox==5.0.2
 django-s3-storage==0.15.0
-django-tagging @ git+https://github.com/rphlo/django-tagging@3257019bd75d4b9284259800200d860e44f1eca4
+django-tagging @ git+https://github.com/rphlo/django-tagging
 djangorestframework==3.16.0
 flatbuffers==25.2.10
 flexcache==0.3
@@ -34,13 +34,13 @@ patchy==2.9.0
 pillow==11.3.0
 pint==0.24.4
 platformdirs==4.3.8
-psycopg==3.2.9
+psycopg[binary,pool]==3.2.9
 psycopg-binary==3.2.9
 psycopg-pool==3.2.6
 pycparser==2.22
 pydantic==2.11.7
 pydantic-core==2.33.2
-pyjwt==2.10.1
+pyjwt[crypto]==2.10.1
 python-dateutil==2.9.0.post0
 pytz==2025.2
 raven==6.10.0
