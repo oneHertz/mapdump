@@ -10,7 +10,10 @@ source $BASEDIR/env/bin/activate
 NEW_MD5SUM="$(md5sum requirements.txt)"
 if [ "$PREV_MD5SUM" != "$NEW_MD5SUM" ]
 then
-  uv pip install -U -r requirements.txt
+  source $BASEDIR/env/bin/activate
+  source ~/.cargo/env
+  source ~/.local/bin/env
+  uv pip install --no-cache --requirement requirements.txt
 fi
 python manage.py migrate --noinput
 python manage.py build_frontend
