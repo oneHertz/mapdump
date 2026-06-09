@@ -12,17 +12,27 @@ services:
       - "5432"
   minio:
     container_name: md_minio
-    image: minio/minio:latest
+    image: ghcr.io/versity/versitygw:latest
     volumes:
-      - ../media:/data
+      - ../media/s3:/data/s3
+      - ../media/versioning:/data/versioning
+      - ../media/iam:/data/iam
+      - ../media/sidecar:/data/sidecar
     expose:
       - "9000"
+    ports:
+      - 9000:9000
     environment:
-      MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: minio123
-    command:
-      - server
-      - /data
+      ROOT_ACCESS_KEY: minio
+      ROOT_SECRET_KEY: minio123
+      VGW_PORT: ":9000"
+      VGW_IAM_DIR: /data/iam
+      VGW_VERSIONING_DIR: /data/versioning
+      VGW_BACKEND: posix
+      VGW_BACKEND_ARGS: /data/s3
+      VGW_META_SIDECAR: /data/sidecar
+      VGW_CORS_ALLOW_ORIGIN: "*"
+    restart: unless-stopped
   nginx:
     container_name: md_nginx
     image: rphlo/nginx:latest
@@ -52,6 +62,7 @@ services:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
   django:
+    platform: linux/x86_64
     container_name: md_django
     image: rphlo/mapdump-dev-server:latest
     stop_signal: SIGINT
