@@ -24,9 +24,9 @@ class Command(BaseCommand):
         env = dict(os.environ)
         env["CI"] = "true"
         self.stdout.write("Building client app ...")
-        #subprocess.check_output(
-        #    [settings.YARN_PATH, "install"], cwd=client_dir, env=env
-        #)
+        subprocess.check_output(
+            [settings.YARN_PATH, "install"], cwd=client_dir, env=env
+        )
 
         subprocess.check_output([settings.YARN_PATH, "build"], cwd=client_dir, env=env)
 
