@@ -655,24 +655,19 @@ const RouteViewing = (props) => {
             </center>
           )}
           <div className="my-3 float-right">
-            {likes.length !== 0 && (<>
+            <button type="button" className="btn btn-primary font-weight-bold font-italic mr-1" onClick={openComments}>
+              {comments.length} <i className="fa fa-comment"></i>
+            </button>
+            <>
             <span data-tip data-for="likers">
-              <button type="button" className="font-weight-bold font-italic btn-dark btn" onClick={dislike}>
+              <button type="button" className="font-weight-bold font-italic btn-primary btn mr-1" onClick={canLike ? grantMedal : dislike}>
                 {likes.length}&nbsp;<i className="fa fa-hands-clapping" />
               </button>
             </span>
             <ReactTooltip place="right" id="likers">
-              <div style={{whiteSpace: "pre"}}>{likers}</div>
+              <div style={{whiteSpace: "pre"}}>{likes.length === 0 ? "Be first to like": likers}</div>
             </ReactTooltip>
-            </>)}
-            <button type="button" className="btn btn-primary font-weight-bold font-italic" onClick={openComments}>
-              {comments.length} <i className="fa fa-comment"></i>
-            </button>
-            {canLike && (<>
-              <button type="button" className="btn btn-primary ml-1" onClick={grantMedal}>
-                <span>Give a clap</span>&nbsp;<i className="fa fa-hands-clapping" />
-              </button>
-            </>)}
+            </>
             {!isPrivate && (
                 <button
                   type="button"
