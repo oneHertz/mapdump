@@ -47,7 +47,6 @@ function NewMap({history}) {
     "image/png": true,
     "image/webp": true,
     "image/avif": true,
-    "image/heic": true
   };
 
   const onRouteLoaded = (newRoute) => {
