@@ -7,7 +7,7 @@ import * as Sentry from "@sentry/react";
 
 if (window.location.host === "mapdump.com") {
   Sentry.init({
-    dsn: "https://faebc23b4f554998b7d05c57f25c0815@o91052.ingest.sentry.io/1435575",
+    dsn: "https://5883ab6ef34af5b702bb72e4691b5f7a@o4510374623117312.ingest.de.sentry.io/4511573960556624",
   });
 }
 
