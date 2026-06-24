@@ -545,54 +545,58 @@ const RouteViewing = (props) => {
         />
         {!(cropping || reCalibrating) && (
           <>
-            <div>
-              <button
-                type="button"
-                style={{ marginBottom: "5px" }}
-                className="btn btn-sm btn-success"
-                onClick={downloadMapRoute}
-              >
-                <i className="fas fa-download"></i> <span>Map+Route</span>
-              </button>
-              &nbsp;<button
-                type="button"
-                style={{ marginBottom: "5px" }}
-                className="btn btn-sm btn-success"
-                onClick={downloadMap}
-              >
-                <i className="fas fa-download"></i> <span>Map</span>
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                style={{ marginBottom: "5px" }}
-                className="btn btn-sm btn-success"
-                onClick={downloadKmz}
-                data-testid="dl-kmz"
-              >
-                <i className="fas fa-download"></i> <span>KMZ</span>
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                style={{ marginBottom: "5px" }}
-                className="btn btn-sm btn-success"
-                onClick={downloadGPX}
-              >
-                <i className="fas fa-download"></i> <span>GPX</span>
-              </button>
-              &nbsp;
-              <button type="button" className="btn btn-sm border" onClick={toggleRoute} style={{ marginBottom: "5px" }}>
-                <i
-                  className={
-                    togglingRoute
-                      ? "fa fa-spinner fa-spin"
-                      : "fa fa-toggle-" + (includeRoute ? "on" : "off")
-                  }
-                  style={includeRoute ? { color: "#3c2" } : {}}
-                ></i>{" "}
-                Route
-              </button>
+            <div className="d-flex justify-content-between">
+              <div>
+                <button type="button" className="btn btn-sm border" onClick={toggleRoute} style={{ marginBottom: "5px" }}>
+                  <i
+                    className={
+                      "fa fa-fw fa-" + (togglingRoute
+                        ? "spinner fa-spin"
+                        : "toggle-" + (includeRoute ? "on" : "off")
+                      )
+                    }
+                    style={includeRoute ? { color: "#3c2" } : {}}
+                  ></i>{" "}
+                  Route
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  style={{ marginBottom: "5px" }}
+                  className="btn btn-sm btn-success"
+                  onClick={downloadMapRoute}
+                >
+                  <i className="fas fa-download"></i> <span>Map+Route</span>
+                </button>
+                &nbsp;<button
+                  type="button"
+                  style={{ marginBottom: "5px" }}
+                  className="btn btn-sm btn-success"
+                  onClick={downloadMap}
+                >
+                  <i className="fas fa-download"></i> <span>Map</span>
+                </button>
+                &nbsp;
+                <button
+                  type="button"
+                  style={{ marginBottom: "5px" }}
+                  className="btn btn-sm btn-success"
+                  onClick={downloadKmz}
+                  data-testid="dl-kmz"
+                >
+                  <i className="fas fa-download"></i> <span>KMZ</span>
+                </button>
+                &nbsp;
+                <button
+                  type="button"
+                  style={{ marginBottom: "5px" }}
+                  className="btn btn-sm btn-success"
+                  onClick={downloadGPX}
+                >
+                  <i className="fas fa-download"></i> <span>GPX</span>
+                </button>
+              </div>
             </div>
           </>
         )}
