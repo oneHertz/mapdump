@@ -476,7 +476,7 @@ const RouteHeader = (props) => {
                 onClick={props.reCalibrate}
                 data-testid="togglerecalibrate"
               >
-                <i class="fa-solid fa-compass-drafting"></i> Re-Calibrate Map
+                <i className="fa-solid fa-compass-drafting"></i> Re-Calibrate Map
               </a>
               <a
                 className={"dropdown-item"}

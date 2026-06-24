@@ -49,7 +49,6 @@ const printCornersCoords = (corners_coords, separator) => {
 const RouteViewing = (props) => {
   const [route, setRoute] = useState(false);
   const [mapImage, setMapImage] = useState(false);
-  const [includeHeader, setIncludeHeader] = useState(true);
   const [includeRoute, setIncludeRoute] = useState(true);
   const [name, setName] = useState();
   const [isPrivate, setIsPrivate] = useState(props.isPrivate);
@@ -215,13 +214,28 @@ const RouteViewing = (props) => {
   }
 
   const downloadMapRoute = () => {
-    fetch(imageUrl)
+    const qp = new URLSearchParams();
+    qp.set("m", props.modificationDate);
+    qp.set("show_header", "1");
+    qp.set("show_route", "1");
+    if (isPrivate) {
+      qp.set("auth_token", api_token);
+    }
+    const url = props.mapDataURL + "?" + qp.toString();
+    fetch(url)
       .then((r) => r.blob())
       .then((b) => saveAs(b, getImageName(true)));
   };
 
   const downloadMap = () => {
-    fetch(imageUrl)
+    const qp = new URLSearchParams();
+    qp.set("m", props.modificationDate);
+    qp.set("show_header", "1");
+    if (isPrivate) {
+      qp.set("auth_token", api_token);
+    }
+    const url = props.mapDataURL + "?" + qp.toString();
+    fetch(url)
       .then((r) => r.blob())
       .then((b) => saveAs(b, getImageName(false)));
   };
@@ -252,7 +266,6 @@ const RouteViewing = (props) => {
     if (togglingHeader) {
       return;
     }
-    setIncludeHeader(!includeHeader);
     setTogglingHeader(true);
   };
 
@@ -568,21 +581,8 @@ const RouteViewing = (props) => {
               >
                 <i className="fas fa-download"></i> <span>GPX</span>
               </button>
-            </div>
-            <div>
-              <button type="button" className="btn btn-sm btn-default" onClick={toggleHeader}>
-                <i
-                  className={
-                    togglingHeader
-                      ? "fa fa-spinner fa-spin"
-                      : "fa fa-toggle-" + (includeHeader ? "on" : "off")
-                  }
-                  style={includeHeader ? { color: "#3c2" } : {}}
-                ></i>{" "}
-                Header
-              </button>
               &nbsp;
-              <button type="button" className="btn btn-sm btn-default" onClick={toggleRoute}>
+              <button type="button" className="btn btn-sm border" onClick={toggleRoute} style={{ marginBottom: "5px" }}>
                 <i
                   className={
                     togglingRoute
