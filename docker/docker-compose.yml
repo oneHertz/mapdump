@@ -38,7 +38,7 @@ services:
     image: rphlo/nginx:latest
     volumes:
       - ../:/app/:ro
-      - ../nginx:/etc/nginx/conf.d:ro
+      - ../nginx:/etc/nginx/http.d:ro
     command: ['nginx', '-g', 'daemon off;']
     build:
       context: "."
