@@ -18,4 +18,20 @@ then
 fi
 python manage.py migrate --noinput
 python manage.py build_frontend
+find static/ -type f -name "*.js" -print0 | while IFS= read -r -d '' file; do
+  if [ ! -f "$file.gz" ]; then
+    gzip --best --keep $file
+  fi
+  if [ ! -f "$file.br" ]; then
+    brotli --best --keep $file
+  fi
+done
+find static/ -type f -name "*.css" -print0 | while IFS= read -r -d '' file; do
+  if [ ! -f "$file.gz" ]; then
+    gzip --best --keep $file
+  fi
+  if [ ! -f "$file.br" ]; then
+    brotli --best --keep $file
+  fi
+done
 ./bin/reload
