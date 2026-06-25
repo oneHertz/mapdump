@@ -36,22 +36,22 @@ urlpatterns = [
         name="password_reset_confirm",
     ),
     re_path(
-        r"routes/(?P<route_id>[a-zA-Z0-9_-]{11})/?$",
+        r"^routes/(?P<route_id>[a-zA-Z0-9_-]{11})/?$",
         views.route_view,
         name="route_page",
     ),
     re_path(
-        r"athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})/?$",
+        r"^athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})/?$",
         views.athlete_view,
         name="athlete_page",
     ),
     re_path(
-        r"athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})\.(?P<extension>.*)$",
+        r"^athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})\.(?P<extension>webp|png)$",
         views.athlete_avatar,
         name="athlete_avatar",
     ),
     re_path(
-        r"athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})/(?P<date>\d{4}-\d{2}-\d{2})/?$",
+        r"^athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})/(?P<date>\d{4}-\d{2}-\d{2})/?$",
         views.athlete_day_view,
         name="athlete_day_page",
     ),
