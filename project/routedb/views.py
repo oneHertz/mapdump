@@ -3,7 +3,8 @@ import os.path
 import re
 import time
 import urllib
-
+from io import BytesIO
+from PIL import Image
 import arrow
 import requests
 from allauth.account import app_settings as allauth_settings
@@ -364,7 +365,7 @@ def map_thumbnail(request, uid, *args, **kwargs):
         uid=uid,
     )
     image = route.raster_map.thumbnail
-    return HttpResponse(image, content_type="image/jpeg")
+    return HttpResponse(image, content_type="image/webp")
 
 
 @api_view(["GET"])
@@ -575,16 +576,23 @@ def athlete_view(request, athlete_username):
     return render(request, "frontend/athlete.html", {"athlete": athlete})
 
 
-def athlete_avatar(request, athlete_username):
+def athlete_avatar(request, athlete_username, extension):
     athlete = get_object_or_404(User, username__iexact=athlete_username)
 
     athlete_settings, _ = UserSettings.objects.get_or_create(user=athlete)
     if athlete_settings.avatar:
-        return HttpResponse(athlete_settings.avatar.read(), content_type="image/png")
-    with open(
-        os.path.join(settings.BASE_DIR, "routedb", "default-avatar.png"), "rb"
-    ) as fp:
-        return HttpResponse(fp.read(), content_type="image/png")
+        data_png = athlete_settings.avatar.read()
+    else:
+        with open(
+            os.path.join(settings.BASE_DIR, "routedb", "default-avatar.png"), "rb"
+        ) as fp:
+            data_png = fp.read()
+    if extension == "png":
+        return HttpResponse(data_png, content_type="image/png")
+    image = Image.open(BytesIO(input_buffer))
+    output_buffer = BytesIO()
+    image.save(output_buffer, format="WEBP", quality=80)
+    webp_bytes = output_buffer.getvalue()  
 
 
 def athlete_day_view(request, athlete_username, date):

@@ -31,7 +31,7 @@ const Home = ({ history }) => {
                     import.meta.env.VITE_AVATAR_ROOT +
                     "/athletes/" +
                     username +
-                    ".png"
+                    ".webp"
                   }
                   alt="profile"
                   style={{ borderRadius: "50%", width: "80px", border: "1px solid #b6b6b6" }}

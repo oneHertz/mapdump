@@ -259,7 +259,7 @@ class RasterMap(models.Model):
 
     @property
     def thumbnail(self):
-        cache_key = f"map:thumbnail:{self.image.name}"
+        cache_key = f"map:thumbnail:{self.image.name}:WEBP"
         cached_thumb = cache.get(cache_key)
         if cached_thumb:
             return cached_thumb
@@ -285,7 +285,7 @@ class RasterMap(models.Model):
         img_out.paste(img, (0, 0))
         img.close()
         up_buffer = BytesIO()
-        img_out.save(up_buffer, "JPEG", quality=80)
+        img_out.save(up_buffer, "WEBP", quality=60)
         up_buffer.seek(0)
         data_out = up_buffer.read()
         try:

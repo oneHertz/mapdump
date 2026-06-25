@@ -205,7 +205,7 @@ const UserView = ({ match, history }) => {
           <div className="mb-3" style={{ display: "flex", justifyContent: "flex-start" }}>
             <div style={{ marginRight: "15px" }}>
               <img
-                src={`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${data.username}.png`}
+                src={`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${data.username}.webp`}
                 alt="avatar"
                 style={{ borderRadius: "50%", border: "1px solid #b6b6b6" }}
                 height="75px"

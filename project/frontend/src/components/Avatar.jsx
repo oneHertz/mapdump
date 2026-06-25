@@ -12,7 +12,7 @@ const Avatar = () => {
   const [changed, setChanged] = React.useState();
   const [avatar, setAvatar] = React.useState();
   const [errors, setErrors] = React.useState({});
-  const [defaultImage, setDefaultImage] = React.useState(`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${_username}.png`);
+  const [defaultImage, setDefaultImage] = React.useState(`${import.meta.env.VITE_AVATAR_ROOT}/athletes/${_username}.webp`);
 
   const inputRef = React.useRef(null);
 
