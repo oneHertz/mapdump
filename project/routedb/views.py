@@ -593,7 +593,7 @@ def athlete_avatar(request, athlete_username, extension):
     output_buffer = BytesIO()
     image.save(output_buffer, format="WEBP", quality=80)
     webp_bytes = output_buffer.getvalue()
-    return HttpResponse(webp_bytes, content_type="image/png")
+    return HttpResponse(webp_bytes, content_type="image/webp")
 
 
 def athlete_day_view(request, athlete_username, date):
