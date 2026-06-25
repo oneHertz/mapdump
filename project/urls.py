@@ -46,7 +46,7 @@ urlpatterns = [
         name="athlete_page",
     ),
     re_path(
-        r"athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})\.(?P<extension>webp|png)$",
+        r"athletes/(?P<athlete_username>[a-zA-Z0-9_-]{2,})\.(?P<extension>.*)$",
         views.athlete_avatar,
         name="athlete_avatar",
     ),
