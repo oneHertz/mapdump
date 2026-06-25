@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 
 import { printTime } from "../utils/drawHelpers";
 import useGlobalState from "../utils/useGlobalState";
-import logo from "../strava.png";
-import connectWStrava from "../connectWithStrava.png";
+import logo from "../strava.webp";
+import connectWStrava from "../connectWithStrava.webp";
 
 const Settings = (props) => {
   const globalState = useGlobalState();

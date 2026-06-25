@@ -157,7 +157,7 @@ function App() {
           <img
             alt="Compatible with strava"
             width="200px"
-            src="/static/compatibleWithStrava.png"
+            src="/static/compatibleWithStrava.webp"
           ></img>
         </footer>
       </Router>

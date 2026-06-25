@@ -27,7 +27,7 @@ export class LazyImage extends React.Component {
         className="card-img-top lazy"
         alt={alt}
         data-src={src}
-        src={"/static/placeholder-image.png"}
+        src={"/static/placeholder-image.webp"}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import logo2 from "../gpsseuranta.png";
+import logo2 from "../gpsseuranta.webp";
 
 const INVALID_URL_MSG = "Invalid gpsseuranta event URL!";
 const ERROR_LOADING_MSG = "Error fetching gpsseuranta event map!";

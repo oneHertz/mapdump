@@ -3,7 +3,7 @@ import AvatarUploader from "react-avatar-uploader";
 import Swal from "sweetalert2";
 import useGlobalState from "../utils/useGlobalState";
 
-import defaultAvatar from "../default-avatar.png";
+import defaultAvatar from "../default-avatar.webp";
 
 const Avatar = () => {
   const globalState = useGlobalState();
