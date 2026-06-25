@@ -589,7 +589,7 @@ def athlete_avatar(request, athlete_username, extension):
             data_png = fp.read()
     if extension == "png":
         return HttpResponse(data_png, content_type="image/png")
-    image = Image.open(BytesIO(input_buffer))
+    image = Image.open(BytesIO(data_png))
     output_buffer = BytesIO()
     image.save(output_buffer, format="WEBP", quality=80)
     webp_bytes = output_buffer.getvalue()
