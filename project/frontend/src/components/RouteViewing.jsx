@@ -658,6 +658,8 @@ const RouteViewing = (props) => {
               </h3>
             </center>
           )}
+        </div>
+        <div className="container">
           <div className="my-3 float-right">
             <button type="button" className="btn btn-primary font-weight-bold font-italic mr-1" onClick={openComments}>
               {comments.length} <i className="fa fa-comment"></i>
@@ -669,7 +671,7 @@ const RouteViewing = (props) => {
               </button>
             </span>
             <ReactTooltip place="right" id="likers">
-              <div style={{whiteSpace: "pre"}}>{likes.length === 0 ? "Be first to like": likers}</div>
+              <div style={{whiteSpace: "pre"}}>{likes.length === 0 ? (canLike ? "Be first to like": "No love so far") : likers}</div>
             </ReactTooltip>
             </>
             {!isPrivate && (
