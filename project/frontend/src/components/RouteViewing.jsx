@@ -547,7 +547,7 @@ const RouteViewing = (props) => {
           <>
             <div className="d-flex justify-content-between">
               <div>
-                <button type="button" className="btn btn-sm border" onClick={toggleRoute} style={{ marginBottom: "5px" }}>
+                <button type="button" className="btn btn-sm border text-nowrap mr-1" onClick={toggleRoute} style={{ marginBottom: "5px" }}>
                   <i
                     className={
                       "fa fa-fw fa-" + (togglingRoute
