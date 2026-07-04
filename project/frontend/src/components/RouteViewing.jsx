@@ -560,38 +560,36 @@ const RouteViewing = (props) => {
                   Route
                 </button>
               </div>
-              <div>
+              <div className="text-right">
                 <button
                   type="button"
                   style={{ marginBottom: "5px" }}
-                  className="btn btn-sm btn-success"
+                  className="btn btn-sm btn-success ml-1 text-nowrap"
                   onClick={downloadMapRoute}
                 >
                   <i className="fas fa-download"></i> <span>Map+Route</span>
                 </button>
-                &nbsp;<button
+                <button
                   type="button"
                   style={{ marginBottom: "5px" }}
-                  className="btn btn-sm btn-success"
+                  className="btn btn-sm btn-success ml-1"
                   onClick={downloadMap}
                 >
                   <i className="fas fa-download"></i> <span>Map</span>
                 </button>
-                &nbsp;
                 <button
                   type="button"
                   style={{ marginBottom: "5px" }}
-                  className="btn btn-sm btn-success"
+                  className="btn btn-sm btn-success ml-1"
                   onClick={downloadKmz}
                   data-testid="dl-kmz"
                 >
                   <i className="fas fa-download"></i> <span>KMZ</span>
                 </button>
-                &nbsp;
                 <button
                   type="button"
                   style={{ marginBottom: "5px" }}
-                  className="btn btn-sm btn-success"
+                  className="btn btn-sm btn-success ml-1"
                   onClick={downloadGPX}
                 >
                   <i className="fas fa-download"></i> <span>GPX</span>
