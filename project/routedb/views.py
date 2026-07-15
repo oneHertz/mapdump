@@ -208,7 +208,7 @@ class UserDetail(generics.RetrieveAPIView):
 
     def get_object(self):
         username = self.kwargs["username"]
-        return self.get_queryset().get(username__iexact=username)
+        return self.get_queryset().filter(username__iexact=username).first()
 
     def get_queryset(self):
         username = self.kwargs["username"]
