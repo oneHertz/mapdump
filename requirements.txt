@@ -31,7 +31,7 @@ numpy==2.3.2
 oauthlib==3.3.1
 packaging==25.0
 patchy==2.9.0
-pillow==12.2.0
+pillow==12.3.0
 pint==0.24.4
 platformdirs==4.3.8
 psycopg[binary,pool]==3.2.11
