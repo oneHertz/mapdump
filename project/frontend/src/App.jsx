@@ -16,6 +16,8 @@ import PasswordResetConfirmation from "./components/PasswordResetConfirmation";
 import UserDeletionConfirmation from "./components/UserDeletionConfirmation";
 import { GlobalStateProvider } from "./utils/useGlobalState";
 
+Promise.withResolvers||(Promise.withResolvers=function(){var r,j,p=new this(function(a,b){r=a,j=b});return{resolve:r,reject:j,promise:p}});
+
 window.drawmyroute = {};
 
 const LazyHome = React.lazy(() => import('./components/Home'));
