@@ -320,8 +320,7 @@ const RouteDrawing = (props) => {
         saveAs(
           blob,
           name +
-            "_" +
-            (includeRoute ? "" : "blank_") +
+            (includeRoute ? "_" : "_blank_") +
             printCornersCoords(newCorners, "_") +
             "_.jpg"
         );

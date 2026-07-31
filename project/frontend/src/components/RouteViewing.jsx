@@ -208,7 +208,7 @@ const RouteViewing = (props) => {
       includeRoute
     );
     return name +
-      (includeRoute ? "" : "_blank_") +
+      (includeRoute ? "_" : "_blank_") +
       printCornersCoords(newCorners, "_") +
       "_.jpg";
   }
