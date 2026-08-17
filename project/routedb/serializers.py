@@ -266,6 +266,7 @@ class RouteSerializer(serializers.ModelSerializer):
             instance.comment = validated_data["comment"]
         if validated_data.get("is_private"):
             instance.is_private = validated_data["is_private"]
+        raise Exception(validated_data["is_private"])
         instance.save()
         return instance
 
