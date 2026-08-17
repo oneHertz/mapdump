@@ -79,7 +79,7 @@ function NewMap({history}) {
     }
     const newRoute = [];
     for (const track of [...gpx.tracks, ...gpx.routes]) {
-      for (const pos of track.points) {
+      for (const pos of track?.points) {
         if (pos.lat) {
           newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
         }
