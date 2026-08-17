@@ -83,6 +83,11 @@ function NewMap({history}) {
         newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
       }
     }
+    for (const pos of gpx.routes[0]?.points || []) {
+      if (pos.lat) {
+        newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
+      }
+    }
     onRouteLoaded(newRoute);
   };
 
