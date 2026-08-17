@@ -96,7 +96,7 @@ function App() {
               fontWeight: "bold",
             }}
           >
-            <h1 style={{ whiteSpace: "nowrap", fontSize: "9vw", fontWeight: "bold", }}>
+            <h1 style={{ whiteSpace: "nowrap", fontSize: "9vw", fontWeight: "bold", marginBottom: "-2.5vw"}}>
               MAPDUMP
             </h1>
             <p style={{ whiteSpace: "nowrap", margin: "0 0 0 0", fontSize: "4vw", fontWeight: "bold", }}>
