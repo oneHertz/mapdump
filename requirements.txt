@@ -51,7 +51,7 @@ scipy==1.16.1
 sentry-sdk==2.34.1
 six==1.17.0
 soupsieve==2.8.4
-sqlparse==0.5.4
+sqlparse==0.6.0
 stravalib==2.4
 timezonefinder==7.0.1
 types-python-dateutil==2.9.0.20250708
