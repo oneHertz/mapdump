@@ -78,14 +78,11 @@ function NewMap({history}) {
       return;
     }
     const newRoute = [];
-    for (const pos of gpx.tracks[0]?.points || []) {
-      if (pos.lat) {
-        newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
-      }
-    }
-    for (const pos of gpx.routes[0]?.points || []) {
-      if (pos.lat) {
-        newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
+    for (const track of [...gpx.tracks, ...gpx.routes]) {
+      for (const pos of track) {
+        if (pos.lat) {
+          newRoute.push({ time: pos.time, latlng: [pos.lat, pos.lon] });
+        }
       }
     }
     onRouteLoaded(newRoute);
