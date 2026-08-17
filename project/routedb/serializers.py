@@ -266,7 +266,6 @@ class RouteSerializer(serializers.ModelSerializer):
             instance.comment = validated_data["comment"]
         if "is_private" in validated_data:
             instance.is_private = validated_data["is_private"]
-        instance.save()
         return instance
 
     def create(self, validated_data):
