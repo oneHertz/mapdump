@@ -18,7 +18,7 @@ django-cors-headers==4.7.0
 django-rest-knox==5.0.2
 django-s3-storage==0.15.0
 django-tagging @ git+https://github.com/rphlo/django-tagging
-djangorestframework==3.16.0
+djangorestframework==3.17.2
 flatbuffers==25.2.10
 flexcache==0.3
 flexparser==0.4
